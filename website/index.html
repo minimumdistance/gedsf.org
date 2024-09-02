@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full-Screen Grid Overlay with Quotes</title>
+    <title>Global Encryption Day - San Francisco</title>
     <style>
         body {
             margin: 0;
@@ -54,14 +54,14 @@
             color: #ffffff;
             font-family: Arial, sans-serif;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-line-height: normal;
+            line-height: normal;
         }
 
-.text-container .small-text {
-    font-size: 1.5rem; /* Half of the original 3rem size */
-    line-height: 1.2;
-margin-top: -0.5rem;
-}
+        .text-container .small-text {
+            font-size: 1.5rem; /* Half of the original 3rem size */
+            line-height: 1.2;
+        margin-top: -0.5rem;
+        }
 
         .quote {
             position: absolute;
@@ -76,6 +76,26 @@ margin-top: -0.5rem;
 
         .quote.show {
             opacity: 1;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            /* height: 20px; */
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            /* height: 20px; */
+            background-color: #f5f5f5;
+        }
+
+        .center-div {
+            text-align: center;
         }
     </style>
 </head>
@@ -118,7 +138,9 @@ margin-top: -0.5rem;
     <br>
     San Francisco
     <br>
-    <b><a href="https://www.meetup.com/sf-bay-acm/events/303026770/?utm_medium=referral&utm_campaign=share-btn_savedevents_share_modal&utm_source=link">Registration</a></b>
+    <b><a href="https://www.meetup.com/sf-bay-acm/events/303026770/?utm_medium=referral&utm_campaign=share-btn_savedevents_share_modal&utm_source=link">Event Registration (includes two tracks)</a></b>
+    <br>
+    <a href="./tracks.html#training">Track - Training</a> | <a href="tracks.html#leadership">Track - Thought Leadership</a>
 </span>
 </div>
 
@@ -184,6 +206,24 @@ margin-top: -0.5rem;
     // Show a random quote every 3 seconds
     setInterval(showRandomQuote, 3000);
 </script>
+
+<header class="header center-div">
+    <a href="https://www.globalencryption.org">Global Encryption Coalition</a>   |
+    <a href="./index.html">Home</a>   |
+    <a href="./tracks.html">GED Tracks 2024</a>   |
+    <a href="./sponsers.html">Sponsors</a>   |
+    <a href="./about.html">About GEDSF</a>
+</header>
+
+<footer class="footer center-div">
+     <a href="https://www.globalencryption.org">Global Encryption Coalition</a>   |
+     <a href="https://internetsociety.org">Internet Society (ISOC)</a>   |
+     <a href="https://acm.org">Association for Computing Machinery (ACM)</a>
+     <br>
+     <a href="https://www.sfbayisoc.org/">ISOC SF</a>   |
+     <a href="https://www.sfbayacm.org/">ACM SF</a>    |
+     &#169; 2024
+</footer>
 
 </body>
 </html>
