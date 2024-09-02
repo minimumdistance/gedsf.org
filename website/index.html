@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Screen Grid Overlay with Quotes</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #f0f0f0;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 0;
+            pointer-events: none;
+        }
+
+        .overlay div {
+            width: 100%;
+            height: 100%;
+            animation: colorFade 8s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes colorFade {
+            0%, 100% {
+                opacity: 0;
+            }
+            25%, 75% {
+                opacity: 1;
+            }
+        }
+
+        .text-container {
+            position: absolute;
+            bottom: 20%;
+            width: 100%;
+            text-align: center;
+            font-size: 3rem;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+line-height: normal;
+        }
+
+.text-container .small-text {
+    font-size: 1.5rem; /* Half of the original 3rem size */
+    line-height: 1.2;
+margin-top: -0.5rem;
+}
+
+        .quote {
+            position: absolute;
+            font-size: 2rem;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            white-space: nowrap;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .quote.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="overlay">
+    <!-- Random colored squares -->
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+<div class="text-container">
+    Global Encryption Day 2024
+<span class="small-text">
+    <br>
+    21-October-2024
+    <br>
+    San Francisco
+    <br>
+    <b><a href="https://www.meetup.com/sf-bay-acm/events/303026770/?utm_medium=referral&utm_campaign=share-btn_savedevents_share_modal&utm_source=link">Registration</a></b>
+</span>
+</div>
+
+<div class="quote" id="quote"></div>
+
+<script>
+    const quotes = [
+        "Encryption is safety.",
+        "I can learn encryption."
+    ];
+
+    function getRandomColor() {
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        const a = Math.random() * 0.8 + 0.2; // Random opacity between 0.2 and 1
+        return `rgba(${r}, ${g}, ${b}, ${a})`;
+    }
+
+    function setRandomColors() {
+        document.querySelectorAll('.overlay div').forEach(div => {
+            div.style.backgroundColor = getRandomColor();
+        });
+    }
+
+    function getRandomQuote() {
+        return quotes[Math.floor(Math.random() * quotes.length)];
+    }
+
+    function getRandomPosition() {
+        const x = Math.random() * (window.innerWidth - 300); // Adjust 300 to prevent text overflow
+        const y = Math.random() * (window.innerHeight - 50); // Adjust 50 for text height
+        return { x, y };
+    }
+
+    function showRandomQuote() {
+        const quoteElement = document.getElementById('quote');
+        const quote = getRandomQuote();
+        const position = getRandomPosition();
+
+        quoteElement.textContent = quote;
+        quoteElement.style.left = `${position.x}px`;
+        quoteElement.style.top = `${position.y}px`;
+
+        console.log(quoteElement.textContent);
+        console.log(quoteElement.style.left);
+        console.log(quoteElement.style.top);
+
+        // Toggle class to start the fade in/out effect
+        quoteElement.classList.add('show');
+
+        setTimeout(() => {
+            quoteElement.classList.remove('show');
+        }, 2000); // 3 seconds to fade out
+    }
+
+    // Set initial random colors
+    setRandomColors();
+
+    // Change colors every 8 seconds to match the animation cycle
+    setInterval(setRandomColors, 8000);
+
+    // Show a random quote every 3 seconds
+    setInterval(showRandomQuote, 3000);
+</script>
+
+</body>
+</html>
+
