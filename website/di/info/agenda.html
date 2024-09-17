@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>About GEDSF</title>
+<link rel="stylesheet" href="../styles/main.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+  <div id="header-wrap"> <a href="../index.html">Global Encryption Day SF</a>
+    <nav>
+      <ul>
+        <li> <a href="../index.html">Home</a> </li>
+        <li> <a id="selected">Agenda</a> </li>
+        <li> <a  href="./about.html">About</a> </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main>
+    <div class="tab">
+        <button class="tablinks" style="background-color: transparent;" onclick="openTab(event, 'Leadership')">Leadership Track</button>
+        <button class="tablinks" style="background-color: transparent;" onclick="openTab(event, 'Training')">Training Track</button>
+    </div>
+
+    <div id="Leadership" class="tabcontent">
+      <h1>Leadership Track Agenda</h1>
+      <h1>Lead: <a href="https://www.linkedin.com/in/avegaarias/">Andrés Vega</a> @ <a href="https://www.messier42.com/">M42</a></h1>
+      <p>In-person: 101 Townsend @ Cloudflare</p>
+      <p>Virtual: TBD</p>
+      <p>2:00 PM - Welcome and Opening Remarks</p>
+      <p>2:45 PM - Talk: Hart Montgomery</p>
+      <p>3:30 PM - Talk: Deep Patel</p>
+      <p>4:15 PM - Coffee Break</p>
+      <p>4:30 PM - Talk: Andrew Clay Shafer</p>
+      <p>5:25 PM - Coffee Break</p>
+      <p>5:30 PM - Talk: Andrés Vega</p>
+      <p>6:15 PM - Coffee Break</p>
+      <p>7:00 PM - Keynote: David Aronchick</p>
+      <p>8:00 PM - Closing Notes</p>
+      <p>9:00 PM - Networking</p>
+  </div>
+  
+  <div id="Training" class="tabcontent" style="display:none;">
+      <h1>Training Track Agenda</h1>
+      <h1>Lead: <a href="https://www.linkedin.com/in/cloud-native-chris/">Chris Hanson</a> @ <a href="https://rx-m.com">RX-M</a></h1>
+      <p>In-person: 188 The Embarcadero @ Google Community Space</p>
+      <p>Virtual: TBD</p>
+      <p>9:00 AM - Welcome</p>
+      <p>9:30 AM - Cryptography in Software Development</p>
+      <p>10:45 AM - "Keyless" Cryptography</p>
+      <p>12:00 PM - Lunch</p>
+      <p>1:00 PM - Software Supply Chain Security</p>
+      <p>2:30 PM - Security Frameworks</p>
+      <p>4:00 PM - Closing Notes</p>
+      <p>4:30 PM - Networking</p>
+      <p>5:00 PM - Leave for Leadership Track at Cloudflare</p>
+  </div>
+  <footer>
+    <p>© 2024 GEDSF</p>
+    <ul>
+      <li> <a id="mail" href="mailto:ronald.petty@acm.org">mail</a> </li>
+    </ul>
+  </footer>
+</main>
+
+<script>
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementsByClassName("tablinks")[0].click(); 
+});
+</script>
+</body>
+</html>
