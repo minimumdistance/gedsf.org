@@ -21,9 +21,9 @@ const personData = {
       linkedin: 'https://www.linkedin.com/in/avegaarias/'
     },
 
-    'andrew-schaffer': {
-      name: 'Andrew Clay Schaffer',
-      image: 'images/Andrew-Schaffer-Bio.png',
+    'andrew-shafer': {
+      name: 'Andrew Clay Shafer',
+      image: 'images/Andrew-Shafer-Bio.png',
       bio: 'Andrew Clay Shafer is a pioneering figure in DevOps and cloud computing, known for his influential work in advancing continuous delivery and cloud-native infrastructure. A frequent speaker and thought leader, Andrew has contributed to the development of foundational concepts that shape modern software development and operations. With deep experience across a range of technologies, he continues to drive innovation in cloud architecture and operational strategies, making him a respected voice in the tech industry.',
       linkedin: 'https://www.linkedin.com/in/andrewclayshafer/'
     },
