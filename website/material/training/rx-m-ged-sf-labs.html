@@ -1,0 +1,2669 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>rx-m-ged-sf-labs.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p><img src="https://rx-m.com/rxm-cnc.svg" alt="RX-M, llc."></p>
+<h1 id="global-encryption-day-san-francisco">Global Encryption Day San Francisco</h1>
+<h2 id="lab-1---cryptography-in-software-development-code--commit-signing">Lab 1 - Cryptography in Software Development: Code &amp; Commit Signing</h2>
+<p>Protecting files is one of the most common uses for encryption. We use some sort of unique artifact: a key, a secret,
+something else that serves to encrypt our data and keep our bits secure. Knowing how to do so, even with the most basic
+(and well used over time) tools is a fundamental skill.</p>
+<p>But encryption is also about trust - trusting that our data is not only secure in storage, but that it is only visible
+to the intended audience (our recipient). We can use those same keys (or at least something related to them) to build a
+basis of trust for not only our files but the way we present them - like our git commits!</p>
+<p>In this lab, you will explore a couple of encryption related topics that will train you on how to use encryption to not
+only protect your files, but also serve as the basis of trust:</p>
+<ul>
+<li>How to encrypt individual files to protect their contents</li>
+<li>How to sign Git commits before pushing them to a repository (which we'll host locally using <code>git daemon</code>)</li>
+</ul>
+<h3 id="0-connect-to-the-lab-vm">0. Connect to the lab VM</h3>
+<p>You will be assigned an AWS workstation IP address and SSH key to complete the labs in this course.</p>
+<p>To access your instance:</p>
+<p>Open an SSH client in a Terminal on MacOS or Putty/MobaXterm on Windows. Locate your private key file (e.g. key.pem).
+Your key must not be publicly viewable for SSH to work; use the command <code>chmod 400 key.pem</code> if needed:</p>
+<pre class="hljs"><code><div>@laptop:~$ chmod 400 \path-to-ssh-key\key.pem
+</div></code></pre>
+<p>Then, connect to your instance using its IP Address, username <code>ubuntu</code> and your SSH key. The <code>-i</code> option tells ssh to
+use the specified identify file (private key). e.g. <code>ssh -i \path-to-ssh-key\key.pem ubuntu@&lt;IP&gt;</code>.</p>
+<pre class="hljs"><code><div>@laptop:~$ ssh -i \path-to-ssh-key\key.pem ubuntu@55.55.55.55
+
+The authenticity of host '55.55.55.55 (55.55.55.55)' can't be established.
+ECDSA key fingerprint is SHA256:PKRtJDb4CvjAq4Hh7qpISyZQdPXw3oc5QcJFRzhRkuQ.
+Are you sure you want to continue connecting (yes/no)? yes
+
+...
+
+~$
+</div></code></pre>
+<p>When your prompt changes to something like <code>ubuntu@ip-172-31-4-159:~$</code> you are connected to the lab VM. This lab guide
+has simplified that prompt to simply <code>~$</code> to indicate your user's home directory. When a lab intends for you to work in a
+subdirectory of your home directory, that directory will be included in the prompt in the lab guide. For example, if the
+lab is asking you to work in a subdirectory called &quot;test&quot;, the prompt in the lab guide will look like this: <code>~/test$</code>.</p>
+<h3 id="01-install-docker">0.1. Install Docker</h3>
+<p>We will be using Docker later in the lab to run the Git Daemon in a clean manner.</p>
+<p>Use the Docker quick-install script to install Docker.</p>
+<blockquote>
+<p>DO NOT follow the instructions provided by the script's output!</p>
+</blockquote>
+<pre class="hljs"><code><div>~$ wget -qO - https://get.docker.com/ | bash
+
+# Executing docker install script, commit: e5543d473431b782227f8908005543bb4389b8de
+
+...
+
+~$
+</div></code></pre>
+<p>Docker is running in a privileged mode, so all <code>docker</code> commands must be run with <code>sudo</code>:</p>
+<pre class="hljs"><code><div>~$ sudo docker version
+
+Client: Docker Engine - Community
+ Version:           27.3.1
+ API version:       1.47
+ Go version:        go1.22.7
+ Git commit:        ce12230
+ Built:             Fri Sep 20 11:40:59 2024
+ OS/Arch:           linux/amd64
+ Context:           default
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          27.3.1
+  API version:      1.47 (minimum version 1.24)
+  Go version:       go1.22.7
+  Git commit:       41ca978
+  Built:            Fri Sep 20 11:40:59 2024
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.7.22
+  GitCommit:        7f7fdf5fed64eb6a7caf99b3e12efcf9d60e311c
+ runc:
+  Version:          1.1.14
+  GitCommit:        v1.1.14-0-g2c9f560
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+
+~$
+</div></code></pre>
+<h2 id="basic-file-encryption-and-signing">Basic File Encryption (and signing!)</h2>
+<h3 id="1-prepare-the-code">1. Prepare the code</h3>
+<p>First we need to download the gzipped package for Golang from Google. To do that we will use the <code>wget</code> application.</p>
+<p>Download the Go package:</p>
+<pre class="hljs"><code><div>~$ wget https://dl.google.com/go/go1.23.2.linux-amd64.tar.gz
+
+--2024-10-15 02:00:29--  https://dl.google.com/go/go1.23.2.linux-amd64.tar.gz
+Resolving dl.google.com (dl.google.com)... 142.250.191.46, 2607:f8b0:4005:80f::200e
+Connecting to dl.google.com (dl.google.com)|142.250.191.46|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 73611540 (70M) [application/x-gzip]
+Saving to: ‘go1.23.2.linux-amd64.tar.gz’
+
+go1.23.2.linux-amd64.tar.gz  100%[==============================================&gt;]  70.20M   135MB/s    in 0.5s
+
+2024-10-15 02:00:29 (135 MB/s) - ‘go1.23.2.linux-amd64.tar.gz’ saved [73611540/73611540]
+
+~$
+</div></code></pre>
+<p>Next extract the archive into a directory where you would like it to live. In this example we will extract it to
+<code>/usr/local</code>. Where ever you decide to extract it to, make note of that location. We will need it for the next step.</p>
+<pre class="hljs"><code><div>~$ sudo tar -C /usr/local/ -xzf go1.23.2.linux-amd64.tar.gz
+
+~$
+</div></code></pre>
+<p>Now we will add the path from the previous step to our environment PATH variable.</p>
+<p>Add <code>xport PATH=$PATH:/usr/local/go/bin</code> to the <code>.profile</code> file in your home directory, then source it so it's active:</p>
+<pre class="hljs"><code><div>~$ echo &quot;export PATH=$PATH:/usr/local/go/bin&quot; &gt;&gt; $HOME/.profile
+
+~$ source ~/.profile
+</div></code></pre>
+<p>We should be able to use Go now. Let's test to make sure it's working. Typing <code>go version</code> we should see something like
+this</p>
+<pre class="hljs"><code><div>~$ go version
+
+go version go1.23.2 linux/amd64
+
+~$
+</div></code></pre>
+<p>Now lets write a quick Go application to make sure everything is ready to go (no pun intended).</p>
+<p>First create a new directory for the lab and change into it:</p>
+<pre class="hljs"><code><div>~$ mkdir -p ~/lab1 ; cd $_
+
+~/lab1$
+</div></code></pre>
+<p>In the <strong>lab1</strong> directory create a new Go module named <code>main</code> modules are how Go manages dependencies. A module
+is a collection of packages that are released, versioned, and distributed together. Modules may be downloaded directly
+from version control repositories or from module proxy servers.</p>
+<p>In our case, we're creating a new module:</p>
+<pre class="hljs"><code><div>~/lab1$ go mod init main
+
+go: creating new go.mod: module main
+
+~/lab1$
+</div></code></pre>
+<p>With our module created we will now create our <code>main.go</code> file where we will write our code. Again these instructions
+will be using <code>nano</code> as the code editor, but please feel free to use whatever editor you are most comfortable with.</p>
+<pre class="hljs"><code><div>~/lab1$ nano main.go ; cat $_
+</div></code></pre>
+<p>This is going to be a very simple program. Just a simple webserver that listens on port 8080 and responds on the root
+(&quot;/&quot;) route with <code>Hello World!</code> when it receives a request:</p>
+<blockquote>
+<p>N.B. Be sure your code is formatted <strong>exactly</strong> like the example below. If any indentation is missing, the code will
+not run.</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">"fmt"</span>
+	<span class="hljs-string">"net/http"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">helloHandler</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
+	response := <span class="hljs-string">"Hello World!"</span>
+	fmt.Fprintln(w, response)
+	fmt.Println(<span class="hljs-string">"Processing hello request."</span>)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">listenAndServe</span><span class="hljs-params">(port <span class="hljs-keyword">string</span>)</span></span> {
+	fmt.Printf(<span class="hljs-string">"Listening on port %s\n"</span>, port)
+	err := http.ListenAndServe(<span class="hljs-string">":"</span>+port, <span class="hljs-literal">nil</span>)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+		<span class="hljs-built_in">panic</span>(<span class="hljs-string">"ListenAndServe: "</span> + err.Error())
+	}
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+	http.HandleFunc(<span class="hljs-string">"/"</span>, helloHandler)
+	port := <span class="hljs-string">"8080"</span>
+	<span class="hljs-keyword">go</span> listenAndServe(port)
+	<span class="hljs-keyword">select</span> {}
+}
+</div></code></pre>
+<p>Press <code>Ctrl+O</code> to save the file and <code>Ctrl+X</code> to exit nano.</p>
+<p>We are now ready to run our program. Run the commands below and you should see &quot;Hello World.&quot; print out to the console:</p>
+<pre class="hljs"><code><div>~/lab1$ go run main.go &amp;
+
+[1] 2570
+
+# wait about 30 seconds
+
+Listening on port 8080
+
+~/lab1$ curl localhost:8080
+
+Processing hello request.
+Hello world!
+
+~/lab1$ pkill go
+
+[1]+  Terminated              go run main.go
+
+~/lab1$
+</div></code></pre>
+<p>Alright! The code is ready for all sorts of exciting (and hopefully encryption-related) things!</p>
+<h3 id="2-key-management">2. Key management</h3>
+<p>Ubuntu has a cryptographic key management system as part of the operating system. It utilizes a tool called gpg (GNU
+Privacy Guard), which is a free implementation of the OpenPGP standard for encrypting and signing data and managing
+cryptographic keys.</p>
+<p><code>gpg</code> is pre-installed on most Ubuntu distributions, and it provides functionalities for generating, importing, exporting,
+and managing cryptographic keys. It also supports encryption, decryption, and digital signatures using both symmetric
+and asymmetric encryption algorithms.</p>
+<p>To check if gpg is installed on an Ubuntu machine, you can open a terminal and run the following command:</p>
+<pre class="hljs"><code><div>~/lab1$ gpg --version
+
+gpg (GnuPG) 2.4.4
+libgcrypt 1.10.3
+Copyright (C) 2024 g10 Code GmbH
+License GNU GPL-3.0-or-later &lt;https://gnu.org/licenses/gpl.html&gt;
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Home: /home/ubuntu/.gnupg
+Supported algorithms:
+Pubkey: RSA, ELG, DSA, ECDH, ECDSA, EDDSA
+Cipher: IDEA, 3DES, CAST5, BLOWFISH, AES, AES192, AES256, TWOFISH,
+        CAMELLIA128, CAMELLIA192, CAMELLIA256
+Hash: SHA1, RIPEMD160, SHA256, SHA384, SHA512, SHA224
+Compression: Uncompressed, ZIP, ZLIB, BZIP2
+
+~/lab1$
+</div></code></pre>
+<blockquote>
+<p>N.B. If gpg is not installed on the system, you can install it using the apt package manager by running:</p>
+<pre class="hljs"><code><div>~/lab1$ sudo apt update &amp;&amp; sudo apt install gnupg
+</div></code></pre>
+</blockquote>
+<p>The first thing we need to do is to generate a key pair. There's really not much we can do without one, so type in:
+<code>gpg --key-gen</code></p>
+<p>You'll be asked for a name and email address.</p>
+<pre class="hljs"><code><div>~/lab1$ gpg --gen-key
+
+gpg (GnuPG) 2.4.4; Copyright (C) 2024 g10 Code GmbH
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+gpg: directory '/home/ubuntu/.gnupg' created
+gpg: keybox '/home/ubuntu/.gnupg/pubring.kbx' created
+Note: Use &quot;gpg --full-generate-key&quot; for a full featured key generation dialog.
+
+GnuPG needs to construct a user ID to identify your key.
+
+Real name: GESF2024 Attendee
+Email address: attendee@gesf2024.event
+You selected this USER-ID:
+    &quot;GESF2024 Attendee &lt;attendee@gesf2024.event&gt;&quot;
+
+Change (N)ame, (E)mail, or (O)kay/(Q)uit? O
+</div></code></pre>
+<p>Here we need to type 'O' for Okay. After you enter 'O' you will be prompted to enter and re-enter a passphrase for the
+new key pair. For the lab, use a simple and/or memorable passphrase for the key and make note of it for subsequent use.</p>
+<pre class="hljs"><code><div>We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+gfdgpg: /home/ubuntu/.gnupg/trustdb.gpg: trustdb created
+gpg: directory '/home/ubuntu/.gnupg/openpgp-revocs.d' created
+gpg: revocation certificate stored as '/home/ubuntu/.gnupg/openpgp-revocs.d/C50A324593A99648D7B064C9E41D7D6F14B3872D.rev'
+public and secret key created and signed.
+
+pub   ed25519 2024-10-15 [SC] [expires: 2027-10-15]
+      C50A324593A99648D7B064C9E41D7D6F14B3872D
+uid                      GESF2024 Attendee &lt;attendee@gesf2024.event&gt;
+sub   cv25519 2024-10-15 [E] [expires: 2027-10-15]
+</div></code></pre>
+<p>Let's make sure that the key is in our key database. Type in <code>gpg --list-keys</code> and you should see something like the following:</p>
+<pre class="hljs"><code><div>~/lab1$ gpg --list-keys
+
+gpg: checking the trustdb
+gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
+gpg: next trustdb check due at 2027-10-15
+/home/ubuntu/.gnupg/pubring.kbx
+-------------------------------
+pub   ed25519 2024-10-15 [SC] [expires: 2027-10-15]
+      C50A324593A99648D7B064C9E41D7D6F14B3872D
+uid           [ultimate] GESF2024 Attendee &lt;attendee@gesf2024.event&gt;
+sub   cv25519 2024-10-15 [E] [expires: 2027-10-15]
+
+~/lab1$
+</div></code></pre>
+<h3 id="2-basic-encryption">2. Basic encryption</h3>
+<p>So, now that we have a key pair to work with let's encrypt a file. You can use any file you like, but this step will lead
+you through encrypting one the <code>main.go</code> file we have been using in the previous section.</p>
+<pre class="hljs"><code><div>~/lab1$ gpg --output main.encrypted --encrypt --recipient attendee@gesf2024.event main.go
+
+~/lab1$
+</div></code></pre>
+<p>The command produces no output but if we do a directory listing we will see <code>main.encrypted</code> in our directory.</p>
+<pre class="hljs"><code><div>~/lab1$ ls -l
+
+total 12
+-rw-rw-r-- 1 ubuntu ubuntu  23 Oct 15 02:06 go.mod
+-rw-rw-r-- 1 ubuntu ubuntu 473 Oct 15 02:13 main.encrypted
+-rw-r--r-- 1 ubuntu ubuntu 496 Oct 15 02:07 main.go
+
+~/lab1$
+</div></code></pre>
+<p>When the encrypted data is written to the file, the raw byte array is written out, so if you open the file in an editor
+you will see the byte array shown as binary symbols and odd characters.</p>
+<pre class="hljs"><code><div>~/lab1$ cat main.encrypted
+
+��Z/!z0w��5jT� �s��m.�....
+
+~/lab1$
+</div></code></pre>
+<p>Now that we have an encrypted file the logical thing for us to do is to decrypt it back into it's original text. So,
+from the command line type in <code>gpg --output main.decrypted --decrypt main.encrypted</code> and you should see something
+like the following:</p>
+<pre class="hljs"><code><div>~/lab1$ gpg --output main.decrypted --decrypt main.encrypted
+
+# You will be prompted for your password
+
+gpg: encrypted with cv25519 key, ID 314F6538FAA46D1C, created 2024-10-15
+      &quot;GESF2024 Attendee &lt;attendee@gesf2024.event&gt;&quot;
+
+~/lab1$
+</div></code></pre>
+<p>Examine the decrypted file:</p>
+<pre class="hljs"><code><div>~/lab1$ cat main.decrypted
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">"fmt"</span>
+	<span class="hljs-string">"net/http"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">helloHandler</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
+	response := <span class="hljs-string">"Hello World!"</span>
+	fmt.Fprintln(w, response)
+	fmt.Println(<span class="hljs-string">"Processing hello request."</span>)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">listenAndServe</span><span class="hljs-params">(port <span class="hljs-keyword">string</span>)</span></span> {
+	fmt.Printf(<span class="hljs-string">"Listening on port %s\n"</span>, port)
+	err := http.ListenAndServe(<span class="hljs-string">":"</span>+port, <span class="hljs-literal">nil</span>)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+		<span class="hljs-built_in">panic</span>(<span class="hljs-string">"ListenAndServe: "</span> + err.Error())
+	}
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+	http.HandleFunc(<span class="hljs-string">"/"</span>, helloHandler)
+	port := <span class="hljs-string">"8080"</span>
+	<span class="hljs-keyword">go</span> listenAndServe(port)
+	<span class="hljs-keyword">select</span> {}
+}
+</div></code></pre>
+<pre class="hljs"><code><div>~/lab1$
+</div></code></pre>
+<p>There's our code!</p>
+<h3 id="3-using-keys-for-signing-and-verification">3. Using keys for signing and verification</h3>
+<p>Remember that asymmetric cryptography allows us to do more than encrypt and decrypt. We can also sign data and verify
+that signature. A digital signature certifies and timestamps a document. If the document is subsequently modified in any
+way, a verification of the signature will fail. A signature is created using the private key of the signer and the
+signature is verified using the corresponding public key.</p>
+<p><code>gpg</code> gives us several options when signing data. The first one we are going to look at is using a detached signature.</p>
+<h3 id="31-detached-signature">3.1. Detached signature</h3>
+<p>The command below signs the code with a detached signature (<code>--detach-sig</code>) producing a file that contains the signature
+for the file that we are signing. Typing the command below will produce a signature file named <code>main.sig</code>:</p>
+<pre class="hljs"><code><div>~/lab1$ gpg --output main.sig --detach-sig main.go
+
+~/lab1$
+</div></code></pre>
+<p>The command produces no output but if we do a directory listing we will see <code>main.sig</code> in our directory:</p>
+<pre class="hljs"><code><div>~/lab1$ ls -l
+
+total 20
+-rw-rw-r-- 1 ubuntu ubuntu  23 Oct 16 01:47 go.mod
+-rw-rw-r-- 1 ubuntu ubuntu 496 Oct 16 01:59 main.decrypted
+-rw-rw-r-- 1 ubuntu ubuntu 472 Oct 16 01:57 main.encrypted
+-rw-rw-r-- 1 ubuntu ubuntu 496 Oct 16 01:47 main.go
+-rw-rw-r-- 1 ubuntu ubuntu 119 Oct 16 17:46 main.sig
+
+~/lab1$
+</div></code></pre>
+<p>The signature file is ciphertext:</p>
+<pre class="hljs"><code><div>~/lab1$ cat main.sig
+
+?u
+!??Ө??sĆA
+?.j?g??
+
+~/lab1$
+</div></code></pre>
+<p>Both the code and detached signature are needed to verify the signature. The <code>--verify</code> option can be to check the
+signature:</p>
+<pre class="hljs"><code><div>~/lab1$ gpg --verify main.sig main.go
+
+gpg: Signature made Tue Oct 15 02:16:06 2024 UTC
+gpg:                using EDDSA key C50A324593A99648D7B064C9E41D7D6F14B3872D
+gpg: Good signature from &quot;GESF2024 Attendee &lt;attendee@gesf2024.event&gt;&quot; [ultimate]
+
+~/lab1$
+</div></code></pre>
+<p>What would happen if we made a copy of the <code>main.go</code>? Would it still validate? Try it:</p>
+<pre class="hljs"><code><div>~/lab1$ cp main.go main.modified
+
+~/lab1$ gpg --verify main.sig main.modified
+
+gpg: Signature made Wed Oct 16 17:46:33 2024 UTC
+gpg:                using EDDSA key 9D91D3A8B71FAD731FC486410AF52E6A1B37D701
+gpg: Good signature from &quot;GESF2024 Attendee &lt;attendee@gesf2024.event&gt;&quot; [ultimate]
+
+~/lab1$
+</div></code></pre>
+<p>The signature is still valid because the contents are identical. Now modify the copied file and attempt to verify the
+signature once again:</p>
+<pre class="hljs"><code><div>~/lab1$ echo &quot;new text&quot; &gt;&gt; main.modified
+
+~/lab1$ gpg --verify main.sig main.modified
+
+gpg: Signature made Wed Oct 16 17:46:33 2024 UTC
+gpg:                using EDDSA key 9D91D3A8B71FAD731FC486410AF52E6A1B37D701
+gpg: BAD signature from &quot;GESF2024 Attendee &lt;attendee@gesf2024.event&gt;&quot; [ultimate]
+
+~/lab1$ 
+</div></code></pre>
+<p>The change is detected and the signature is no longer valid! Delete the copy with <code>rm main.modified</code>.</p>
+<h3 id="32-combined-signature-and-contents">3.2. Combined signature and contents</h3>
+<p>Another type of signature option <code>gpg</code> gives us is to both encrypt and sign a file in one go using the <code>--sign</code> option.
+The document is compressed before being signed, and the output is in binary format.</p>
+<pre class="hljs"><code><div>~/lab1$ gpg --output main.go.sig --sign main.go
+
+~/lab1$
+</div></code></pre>
+<p>The <code>main.go.sig</code> file that gpg has written contains both the encrypted data from <code>main.go</code> as well as as signature that
+we can use to verify the data.</p>
+<pre class="hljs"><code><div>~/lab1$ cat main.go.sig
+
+������%��z�...
+
+# ctrl c
+
+~/lab1$
+</div></code></pre>
+<p>At this point we can either check the signature or check the signature and recover the original document. To just check
+the signature use the <code>--verify</code> option:</p>
+<pre class="hljs"><code><div>~/lab1$ gpg --verify main.go.sig
+
+gpg: Signature made Tue Oct 15 02:19:46 2024 UTC
+gpg:                using EDDSA key 9D91D3A8B71FAD731FC486410AF52E6A1B37D701
+gpg: Good signature from &quot;GESF2024 Attendee &lt;attendee@gesf2024.event&gt;&quot; [ultimate]
+
+~/lab1$
+</div></code></pre>
+<p>To verify the signature and extract the original code use the <code>--decrypt</code> option. First though let's delete the existing
+<code>main.go</code> file:</p>
+<pre class="hljs"><code><div>~/lab1$ rm main.go
+
+~/lab1$
+</div></code></pre>
+<p>In the command below, the signed document to verify and recover is input with <code>--decrypt</code> and the recovered document is
+output with <code>--output</code>, try it:</p>
+<pre class="hljs"><code><div>~/lab1$ gpg --output main.go --decrypt main.go.sig
+
+gpg: Signature made Tue Oct 15 02:16:31 2024 UTC
+gpg:                using EDDSA key C50A324593A99648D7B064C9E41D7D6F14B3872D
+gpg: Good signature from &quot;GESF2024 Attendee &lt;attendee@gesf2024.event&gt;&quot; [ultimate]
+
+~/lab1$
+</div></code></pre>
+<p>Now we should be able to open up <code>main.go</code> and see the original data in the file.</p>
+<pre class="hljs"><code><div>~/lab1$ cat main.go
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+        <span class="hljs-string">"fmt"</span>
+        <span class="hljs-string">"net/http"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">helloHandler</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
+        response := <span class="hljs-string">"Hello World!"</span>
+        fmt.Fprintln(w, response)
+        fmt.Println(<span class="hljs-string">"Processing hello request."</span>)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">listenAndServe</span><span class="hljs-params">(port <span class="hljs-keyword">string</span>)</span></span> {
+        fmt.Printf(<span class="hljs-string">"Listening on port %s\n"</span>, port)
+        err := http.ListenAndServe(<span class="hljs-string">":"</span>+port, <span class="hljs-literal">nil</span>)
+        <span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+                <span class="hljs-built_in">panic</span>(<span class="hljs-string">"ListenAndServe: "</span> + err.Error())
+        }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+        http.HandleFunc(<span class="hljs-string">"/"</span>, helloHandler)
+        port := <span class="hljs-string">"8080"</span>
+        <span class="hljs-keyword">go</span> listenAndServe(port)
+        <span class="hljs-keyword">select</span> {}
+}
+</div></code></pre>
+<pre class="hljs"><code><div>~/lab1$
+</div></code></pre>
+<p>There is much more to <code>gpg</code>. For a full list of the command line options you can use <code>$ gpg --help</code>.</p>
+<h2 id="signing-commits">Signing Commits</h2>
+<p>GPG has historically been used to verify the authenticity of all sorts of things, like messages. One of the most common
+message types you will probably see these days (outside of emails or Slack storms) are Git commits. In a highly
+collaborative environment like Git, it is good to enforce some kind of mechanism that collaborators can use to verify
+the work of others.</p>
+<p>We will use the simple git daemon server built into the git tool as our source code repository server. Git daemon is a
+simple server for git repos that makes git repositories available over the <code>git://</code> protocol.</p>
+<h3 id="4-set-up-git-daemon-and-the-target-repo">4. Set up Git Daemon and the target repo</h3>
+<p>In this step we'll create a container image to run the git daemon. Make a directory for the git daemon to use:</p>
+<pre class="hljs"><code><div>~/lab1$ mkdir -p ~/git-daemon ; cd $_
+
+~/git-daemon$
+</div></code></pre>
+<p>Create a shell script to start the git daemon:</p>
+<pre class="hljs"><code><div>~/git-daemon$ nano git-daemon.sh ; cat $_
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/sh
+</span>
+git daemon --reuseaddr --base-path=. --<span class="hljs-built_in">export</span>-all --verbose --<span class="hljs-built_in">enable</span>=receive-pack
+</div></code></pre>
+<pre class="hljs"><code><div>~/git-daemon$
+</div></code></pre>
+<p>If you are interested in the command switch details you can look them up in the git docs:
+https://git-scm.com/docs/git-daemon</p>
+<p>Make the script executable:</p>
+<pre class="hljs"><code><div>~/git-daemon$ chmod +x git-daemon.sh
+
+~/git-daemon$
+</div></code></pre>
+<p>Next, we will create a Dockerfile; a Dockerfile contains all of the instructions for building a container image for
+running software (binaries, libraries, executables, etc.). Our Git Daemon Dockerfile will use the lightweight <code>alpine</code>
+Linux distribution as its operating environment; it will install the <code>git-daemon</code> package with the <code>apk</code> package
+manager; copy the script we just created into our container image; and execute the script to run the Git Daemon with our
+custom flags.</p>
+<pre class="hljs"><code><div>~/git-daemon$ nano Dockerfile ; cat $_
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">FROM</span> alpine
+<span class="hljs-keyword">RUN</span><span class="bash"> apk add --no-cache git-daemon</span>
+<span class="hljs-keyword">COPY</span><span class="bash"> git-daemon.sh /usr/<span class="hljs-built_in">local</span>/bin/git-daemon.sh</span>
+<span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">9418</span>
+<span class="hljs-keyword">WORKDIR</span><span class="bash"> /git</span>
+<span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-string">"/usr/local/bin/git-daemon.sh"</span>]</span>
+</div></code></pre>
+<pre class="hljs"><code><div>~/git-daemon$
+</div></code></pre>
+<p>Use <code>docker image build</code> to build the image with the tag (<code>-t</code>) <code>git-daemon</code>:</p>
+<pre class="hljs"><code><div>~/git-daemon$ sudo docker image build -t git-daemon .
+
+[+] Building 5.7s (9/9) FINISHED                                                                     docker:default
+ =&gt; [internal] load build definition from Dockerfile                                                           0.1s
+ =&gt; =&gt; transferring dockerfile: 190B                                                                           0.0s
+ =&gt; [internal] load metadata for docker.io/library/alpine:latest                                               1.2s
+ =&gt; [internal] load .dockerignore                                                                              0.0s
+ =&gt; =&gt; transferring context: 2B                                                                                0.0s
+ =&gt; [1/4] FROM docker.io/library/alpine:latest@sha256:beefdbd8a1da6d2915566fde36db9db0b524eb737fc57cd1367effd  1.0s
+ =&gt; =&gt; resolve docker.io/library/alpine:latest@sha256:beefdbd8a1da6d2915566fde36db9db0b524eb737fc57cd1367effd  0.0s
+ =&gt; =&gt; sha256:33735bd63cf84d7e388d9f6d297d348c523c044410f553bd878c6d7829612735 528B / 528B                     0.0s
+ =&gt; =&gt; sha256:91ef0af61f39ece4d6710e465df5ed6ca12112358344fd51ae6a3b886634148b 1.47kB / 1.47kB                 0.0s
+ =&gt; =&gt; sha256:43c4264eed91be63b206e17d93e75256a6097070ce643c5e8f0379998b44f170 3.62MB / 3.62MB                 0.4s
+ =&gt; =&gt; sha256:beefdbd8a1da6d2915566fde36db9db0b524eb737fc57cd1367effd16dc0d06d 1.85kB / 1.85kB                 0.0s
+ =&gt; =&gt; extracting sha256:43c4264eed91be63b206e17d93e75256a6097070ce643c5e8f0379998b44f170                      0.2s
+ =&gt; [internal] load build context                                                                              0.1s
+ =&gt; =&gt; transferring context: 133B                                                                              0.0s
+ =&gt; [2/4] RUN apk add --no-cache git-daemon                                                                    2.7s
+ =&gt; [3/4] ADD git-daemon.sh /usr/local/bin/git-daemon.sh                                                       0.2s
+ =&gt; [4/4] WORKDIR /git                                                                                         0.0s
+ =&gt; exporting to image                                                                                         0.3s
+ =&gt; =&gt; exporting layers                                                                                        0.2s
+ =&gt; =&gt; writing image sha256:4587185c2deeb4e06191ea93b82e9d4af4d573e023d0cc8331df54cc179fba24                   0.0s
+ =&gt; =&gt; naming to docker.io/library/git-daemon                                                                  0.0s
+
+~/git-daemon$
+</div></code></pre>
+<p>With this image we can run the git daemon almost anywhere.</p>
+<p>Time to run it with the following options:</p>
+<ul>
+<li><code>--name</code> gives the name of <code>git-daemon</code> for easier log reference</li>
+<li><code>-d</code> runs this container in the background</li>
+<li><code>-v /tmp/git:/git</code> binds a host directory under <code>/tmp/git</code> to a container directory at <code>/git</code></li>
+<li><code>git-daemon</code> states which container image to run from</li>
+</ul>
+<pre class="hljs"><code><div>~/git-daemon$ sudo docker container run --name git-daemon -d -v /tmp/git:/git git-daemon
+
+16703aaff81f170ef027dc8bff94edba77f284f5689c4df5b874ebf753d795b8
+
+~/git-daemon$
+</div></code></pre>
+<p>The output should return a container ID that you can use to identify the container, or just use the name.</p>
+<p>Inspect the container and see what its IP address it was assigned as you will need it to interact with the daemon:</p>
+<pre class="hljs"><code><div>~/git-daemon$ sudo docker container inspect git-daemon | grep IP
+
+...
+
+                    &quot;IPAddress&quot;: &quot;172.17.0.2&quot;,
+                    &quot;IPPrefixLen&quot;: 16,
+                    &quot;IPv6Gateway&quot;: &quot;&quot;,
+                    &quot;GlobalIPv6Address&quot;: &quot;&quot;,
+                    &quot;GlobalIPv6PrefixLen&quot;: 0,
+
+~/git-daemon$
+</div></code></pre>
+<p>We can contact the container at <code>172.17.0.2</code> (if this is the only container on your VM at the moment, you will likely
+get the same IP as the example one.)</p>
+<p>Save the IP to some environment variable for easier reference:</p>
+<pre class="hljs"><code><div>~/git-daemon$ export GITDADDR=172.17.0.2 &amp;&amp; echo $GITDADDR
+
+~/git-daemon$
+</div></code></pre>
+<p>Finally, confirm that the Git Daemon is ready for action:</p>
+<pre class="hljs"><code><div>~/git-daemon$ sudo docker logs git-daemon
+
+[8] Ready to rumble
+
+~/git-daemon$
+</div></code></pre>
+<p>Excellent! You now have a local Git server that you can do basic push &amp; pull operations from.</p>
+<p>Continue by creating a new repository for our Git daemon to serve with the following options:</p>
+<ol>
+<li>The <code>/tmp/git</code> directory was automatically created by Docker when the <code>git-daemon</code> container was created. Since it
+was created by root, you need to initialize the new repo with sudo.</li>
+<li>To ensure everyone has access to the repo, initialize it with the <code>--shared=all</code> option. We also set up the <code>main</code>
+branch with the <code>-b</code> option. Finally, since it is empty we want to keep it as a bare repo. The git docs describe bare
+repos as:</li>
+</ol>
+<blockquote>
+<p>Instead of creating <directory> and placing the administrative files in <directory>/.git, make the <directory> itself
+the $GIT_DIR. This obviously implies the --no-checkout because there is nowhere to check out the working tree. Also
+the branch heads at the remote are copied directly to corresponding local branch heads, without mapping them to
+refs/remotes/origin/. When this option is used, neither remote-tracking branches nor the related configuration
+variables are created.</p>
+</blockquote>
+<pre class="hljs"><code><div>~/git-daemon$ sudo git init --bare --shared=all -b main /tmp/git/hello-world.git
+
+Initialized empty Git repository in /home/ubuntu/hello-world/
+
+~/git-daemon$
+</div></code></pre>
+<p>Change directories into the <code>lab1</code> directory from earlier, then clone the repo:</p>
+<pre class="hljs"><code><div>~/git-daemon$ cd ~/lab1/
+
+~/lab1$ git clone git://$GITDADDR/hello-world.git
+
+Cloning into 'hello-world'...
+warning: You appear to have cloned an empty repository.
+
+~/lab1$
+</div></code></pre>
+<p>Good sign! It is empty for now (aside from having a <code>main</code> branch.)</p>
+<p>Change directories into the new clone and check its status:</p>
+<pre class="hljs"><code><div>~/lab1$ cd hello-world
+
+~/lab1/hello-world$ git status
+
+On branch main
+
+No commits yet
+
+nothing to commit (create/copy files and use &quot;git add&quot; to track)
+
+~/lab1/hello-world$
+</div></code></pre>
+<p>Looks like the repo is ready to accept files (and commits).</p>
+<h3 id="5-signing-commits-in-a-git-repo">5. Signing commits in a Git repo</h3>
+<p>Now that you have a functional repository, it's time to get committing. First, set up a user name and email that will
+serve as basic identifiers for your commits:</p>
+<pre class="hljs"><code><div>~/lab1/hello-world$ git config --global user.email &quot;attendee@gesf2024.event&quot;
+
+~/lab1/hello-world$ git config --global user.name &quot;GESF2024 Attendee&quot;
+</div></code></pre>
+<p>Using the <code>--global</code> flag ensures that these settings apply for all repos. Omitting them causes those settings to be
+valid only on that repository.</p>
+<p>Copy in the (decrypted) <code>main.go</code> file from the previous step and confirm its presence:</p>
+<pre class="hljs"><code><div>~/lab1/hello-world$ cp ~/lab1/main.go .
+
+~/lab1/hello-world$ ls -l
+
+total 4
+-rw-rw-r-- 1 ubuntu ubuntu 496 Oct 15 02:33 main.go
+
+~/lab1/hello-world$
+</div></code></pre>
+<p>Let's do a very basic commit to start us off.</p>
+<p>Add the file and check the repo status:</p>
+<pre class="hljs"><code><div>~/lab1/hello-world$ git add main.go
+
+~/lab1/hello-world$ git status
+
+On branch main
+
+No commits yet
+
+Changes to be committed:
+  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
+        new file:   main.go
+
+~/lab1/hello-world$
+</div></code></pre>
+<p>Go ahead and do the standard commit, appending your message with <code>-m</code>:</p>
+<pre class="hljs"><code><div>~/lab1/hello-world$ git commit -m &quot;initial commit of main.go&quot;
+
+[master (root-commit) 3045a94] initial commit of main.go
+ 1 file changed, 27 insertions(+)
+ create mode 100644 main.go
+
+~/lab1/hello-world$ git log -1
+
+commit b38f7f773ee193b7cb036c12dc099f634a2ccd1b (HEAD -&gt; main)
+Author: GESF2024 Attendee &lt;attendee@gesf2024.event&gt;
+Date:   Tue Oct 15 02:35:00 2024 +0000
+
+    initial commit of main.go
+
+~/lab1/hello-world$
+</div></code></pre>
+<p>The commit log in the repo states who did it, listing the name and email provided in the earlier config files. These may
+be okay for basic authentication, but (especially for folks who use many workstations) it is better to provide
+additional methods of verifying commits.</p>
+<p>Just to test out the functionality of the Git Daemon, push the first commit:</p>
+<pre class="hljs"><code><div>~/lab1/hello-world$ git push
+
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 516 bytes | 516.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To git://172.17.0.2/hello-world.git
+ * [new branch]      main -&gt; main
+
+~/lab1/hello-world$
+</div></code></pre>
+<p>Great. So far, we are capable of creating commits and pushing them. The only identifying information regarding who did
+our commit comes from the options we set earlier with regards to the username and email. While that may be enough for
+GitHub (or our git server) to authenticate us, it may not be enough for other collaborators to be sure that whatever
+work we put into the repository is actually from us.</p>
+<p>Enter GPG! We can use the same public key verification scheme to help others verify that a given commit actually came
+from us.</p>
+<p>The <code>git</code> client is capable of being informed about our signing keys, and we can also tell a commit to get signed.</p>
+<p>List out the secret keys you set up previously:</p>
+<pre class="hljs"><code><div>~$ gpg --list-secret-keys --keyid-format long
+
+/home/ubuntu/.gnupg/pubring.kbx
+-------------------------------
+sec   ed25519/E41D7D6F14B3872D 2024-10-15 [SC] [expires: 2027-10-15]
+      C50A324593A99648D7B064C9E41D7D6F14B3872D
+uid                 [ultimate] GESF2024 Attendee &lt;attendee@gesf2024.event&gt;
+ssb   cv25519/314F6538FAA46D1C 2024-10-15 [E] [expires: 2027-10-15]
+
+~$
+</div></code></pre>
+<p>We want to pick the key that's capable of signing. This is indicated by the presence of <code>[S]</code> in some form (the first
+one in the example has <code>[SC]</code> from this line in the output:
+<code>sec   ed25519/E41D7D6F14B3872D 2024-10-15 [SC] [expires: 2027-10-15]</code>).</p>
+<p>Use that signature-capable key as your git client's signing key (<em>be sure to replace the example below with your key</em>):</p>
+<pre class="hljs"><code><div>~$ git config --global user.signingkey E41D7D6F14B3872D   # Use the string that follows ed25519/ from your terminal!
+</div></code></pre>
+<p>Git is now configured to use that signing key for all repositories handled on this VM.</p>
+<p>Now let's add another file to commit - create a <code>README.md</code> (which every repo should have!) and stage it for commit:</p>
+<pre class="hljs"><code><div>~/lab1/hello-world$ echo &quot;# Hello world!&quot; &gt;&gt; README.md
+
+~/lab1/hello-world$ git add README.md
+
+~/lab1/hello-world$ git status
+
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)
+        new file:   README.md
+
+~/lab1/hello-world$
+</div></code></pre>
+<p>Try to commit with a signature:</p>
+<blockquote>
+<p>N.B. Be sure to pass <code>export GPG_TTY=$(tty)</code> to inform GPG where to prompt for a password. If not, you will receive a
+<code>signing failed: Inappropriate ioctl for device</code> error.</p>
+</blockquote>
+<pre class="hljs"><code><div>~/lab1/hello-world$ export GPG_TTY=$(tty)    # This enables GPG to ask for a password in your terminal
+
+~/lab1/hello-world$ git commit -S -m &quot;add a new README&quot;
+
+[main 976115a] add a new README
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+
+~/lab1/hello-world$
+</div></code></pre>
+<p>After the password prompt, your commit will now be signed!</p>
+<p>This shows up in the <code>git log</code> output if you pass the <code>--show-signature</code> option:</p>
+<pre class="hljs"><code><div>~/lab1/hello-world$ git log -1 --show-signature
+
+commit 976115a1d22825acd2b18955f1a128d5f3719890 (HEAD -&gt; main)
+gpg: Signature made Tue Oct 15 03:06:08 2024 UTC
+gpg:                using EDDSA key C50A324593A99648D7B064C9E41D7D6F14B3872D
+gpg: Good signature from &quot;GESF2024 Attendee &lt;attendee@gesf2024.event&gt;&quot; [ultimate]
+Author: GESF2024 Attendee &lt;attendee@gesf2024.event&gt;
+Date:   Tue Oct 15 03:06:08 2024 +0000
+
+    add a new README
+
+~/lab1/hello-world$
+</div></code></pre>
+<p>The signature is embedded into the commit, so when you push the signature will go with it to the repository:</p>
+<pre class="hljs"><code><div>~/lab1/hello-world$ git push
+
+...
+
+~/lab1/hello-world$
+</div></code></pre>
+<p>You have now successfully added your first signed commit to your new repository! Let's make a clone of the remote repo
+and verify the signature.</p>
+<pre class="hljs"><code><div>~/lab1/hello-world$ cd ..
+
+~/lab1$ git clone git://$GITDADDR/hello-world.git hw-copy
+
+Cloning into 'hw-copy'...
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Receiving objects: 100% (6/6), done.
+
+~/lab1$ cd hw-copy
+
+~/lab1/hw-copy$
+</div></code></pre>
+<p>The <code>git verify-commit</code> command that will let you validate the commit's signature:</p>
+<p><em>Make sure you replace the example commit hash below with the commit hash from your terminal!</em></p>
+<pre class="hljs"><code><div>:~/lab1/hw-copy$ git log -1
+
+commit 976115a1d22825acd2b18955f1a128d5f3719890 (HEAD -&gt; main, origin/main, origin/HEAD)
+Author: GESF2024 Attendee &lt;attendee@gesf2024.event&gt;
+Date:  Tue Oct 15 03:04:18 2024 UTC
+
+    add a new README
+
+~/lab1/hw-copy$ git verify-commit -v 976115a1d22825acd2b18955f1a128d5f3719890   # Replace this hash
+
+tree e56e675ab20702d18bc795d38c7503143c5468c3
+parent b38f7f773ee193b7cb036c12dc099f634a2ccd1b
+author GESF2024 Attendee &lt;attendee@gesf2024.event&gt; 1728961568 +0000
+committer GESF2024 Attendee &lt;attendee@gesf2024.event&gt; 1728961568 +0000
+
+add a new README
+gpg: Signature made Tue Oct 15 03:06:08 2024 UTC
+gpg:                using EDDSA key C50A324593A99648D7B064C9E41D7D6F14B3872D
+gpg: Good signature from &quot;GESF2024 Attendee &lt;attendee@gesf2024.event&gt;&quot; [ultimate]
+
+~/lab1/hw-copy$
+</div></code></pre>
+<p>If you want to forego the <code>-S</code> option in subsequent <code>git commit</code> invocations and have all your commits signed by your
+local client by default, you can set the <code>commit.gpgsign true</code> configuration:</p>
+<pre class="hljs"><code><div>~/lab1/hw-copy$ git config --global commit.gpgsign true
+</div></code></pre>
+<p>Now, anytime you commit anything in any repository, your chosen signing key will be used!</p>
+<p>Commit verification is available online on many Git providers, and they typically request that you provide a public key
+to your account. This results in a <code>Verified</code> or similar badge on your commits whenever they are viewed in a repository.</p>
+<p>Setting this up is provider specific, so here are the links to the various documentation that will allow your verified
+commits to speak for themselves when pushed up to your SCM!</p>
+<ul>
+<li>GitHub:
+https://docs.github.com/en/authentication/managing-commit-signature-verification/adding-a-gpg-key-to-your-github-account</li>
+<li>BitBucket: https://confluence.atlassian.com/bitbucketserver/using-gpg-keys-913477014.html</li>
+<li>GitLab: https://docs.gitlab.com/ee/user/project/repository/signed_commits/</li>
+</ul>
+<h3 id="6-conclusion---a-word-on-key-management">6. Conclusion - a word on key management</h3>
+<p>The signing key is extremely important for verifying the authenticity of your commits, so take a good effort to try and
+protect them. These can include:</p>
+<ul>
+<li>Regularly update your GPG key's expiration date.</li>
+<li>Keep your private keys secure, ideally using a hardware security token
+<ul>
+<li>These can include things like YubiKey or other physical devices that can be secured with a passphrase</li>
+<li>Even taking them off the local drive is a good measure to take - if nothing else, a USB key or other media in a
+secure box will be a good approach!</li>
+</ul>
+</li>
+<li>If you suspect your key has been compromised, revoke it immediately and generate a new one.</li>
+</ul>
+<p>One thing you might consider is having separate keys for signing, encryption, and even a long-running &quot;original&quot; key
+used to generate more.</p>
+<p>List the keys currently set up in your VM:</p>
+<pre class="hljs"><code><div>~/lab1/hw-copy$ cd ~/lab1
+
+~/lab1$ gpg --list-keys
+
+/home/ubuntu/.gnupg/pubring.kbx
+-------------------------------
+pub   ed25519 2024-10-15 [SC] [expires: 2027-10-15]
+      C50A324593A99648D7B064C9E41D7D6F14B3872D
+uid           [ultimate] GESF2024 Attendee &lt;attendee@gesf2024.event&gt;
+sub   cv25519 2024-10-15 [E] [expires: 2027-10-15]
+</div></code></pre>
+<p>There is actually more than one key here: one for signing (<code>[SC]</code>) and the other for encryption <code>[E]</code>.</p>
+<p>You can add an additional key to this public key by editing it with <code>gpg --edit-key</code>:</p>
+<p><em>Make sure you replace the example key ID below with the one from your terminal!</em></p>
+<pre class="hljs"><code><div>~/lab1$ gpg --edit-key C50A324593A99648D7B064C9E41D7D6F14B3872D
+
+gpg (GnuPG) 2.4.4; Copyright (C) 2024 g10 Code GmbH
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Secret key is available.
+
+sec  ed25519/E41D7D6F14B3872D
+     created: 2024-10-15  expires: 2027-10-15  usage: SC
+     trust: ultimate      validity: ultimate
+ssb  cv25519/314F6538FAA46D1C
+     created: 2024-10-15  expires: 2027-10-15  usage: E
+[ultimate] (1). GESF2024 Attendee &lt;attendee@gesf2024.event&gt;
+
+gpg&gt;
+</div></code></pre>
+<p>Type in <code>addkey</code> to append a new subkey, following the prompts</p>
+<pre class="hljs"><code><div>gpg&gt; addkey
+
+Please select what kind of key you want:
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+   (5) Elgamal (encrypt only)
+   (6) RSA (encrypt only)
+  (10) ECC (sign only)
+  (12) ECC (encrypt only)
+  (14) Existing key from card
+
+Your selection? 10   # This will generate an ed25519 key
+
+Please select which elliptic curve you want:
+
+   (1) Curve 25519 *default*
+   (4) NIST P-384
+   (6) Brainpool P-256
+
+Your selection? 1   # The 25519 part of ed25519!
+
+Please specify how long the key should be valid.
+         0 = key does not expire
+      &lt;n&gt;  = key expires in n days
+      &lt;n&gt;w = key expires in n weeks
+      &lt;n&gt;m = key expires in n months
+      &lt;n&gt;y = key expires in n years
+
+Key is valid for? (0) 2y   # This is inline with the previous subkeys
+
+Key expires at Thu Oct 15 10:40:53 2026 UTC
+Is this correct? (y/N) y
+Really create? (y/N) y
+
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+
+sec  ed25519/E41D7D6F14B3872D
+     created: 2024-10-15  expires: 2027-10-15  usage: SC
+     trust: ultimate      validity: ultimate
+ssb  cv25519/314F6538FAA46D1C
+     created: 2024-10-15  expires: 2027-10-15  usage: E
+ssb  ed25519/F0F7A7410AFADB6A
+     created: 2024-10-15  expires: 2026-10-15  usage: S
+[ultimate] (1). GESF2024 Attendee &lt;attendee@gesf2024.event&gt;
+
+gpg&gt;
+</div></code></pre>
+<p>There's a new signing key, indicated by <code>usage: S</code>:</p>
+<p>Type <code>save</code> to commit the new key, then look at the keyid:</p>
+<pre class="hljs"><code><div>gpg&gt; save
+
+~/lab1$ gpg --list-keys --keyid-format long
+
+/home/ubuntu/.gnupg/pubring.kbx
+-------------------------------
+pub   ed25519/E41D7D6F14B3872D 2024-10-15 [SC] [expires: 2027-10-15]
+      C50A324593A99648D7B064C9E41D7D6F14B3872D
+uid                 [ultimate] GESF2024 Attendee &lt;attendee@gesf2024.event&gt;
+sub   cv25519/314F6538FAA46D1C 2024-10-15 [E] [expires: 2027-10-15]
+sub   ed25519/F0F7A7410AFADB6A 2024-10-15 [S] [expires: 2026-10-15]
+
+~/lab1$
+</div></code></pre>
+<p>Now, update your git config's signing key to use the new key:</p>
+<pre class="hljs"><code><div>~/lab1$ git config --global --unset user.signingkey   # Just to be sure
+
+~/lab1$ git config --global user.signingkey F0F7A7410AFADB6A
+</div></code></pre>
+<p>Now the new signing key should be in use.</p>
+<p>Go ahead and add a new file (like a <code>.gitignore</code>) to your repository and commit it:</p>
+<pre class="hljs"><code><div>~/lab1$ cd hello-world/
+
+~/lab1/hello-world$ echo &quot;*.html&quot; &gt;&gt; .gitignore
+
+~/lab1/hello-world$ git add .gitignore &amp;&amp; git commit -m &quot;add gitignore&quot;
+
+[main 4c066c7] add gitignore
+ 1 file changed, 1 insertion(+)
+ create mode 100644 .gitignore
+
+~/lab1/hello-world$
+</div></code></pre>
+<p>You should have been prompted for the password automatically - that's <code>commit.gpgsign true</code> at work!</p>
+<p>Inspect the commit log, showing the signature:</p>
+<pre class="hljs"><code><div>~/lab1/hello-world$ git log -1 --show-signature
+
+commit 4c066c779ba2c754ab5be03226f2ffe6d467006b (HEAD -&gt; main)
+gpg: Signature made Tue Oct 15 10:46:04 2024 UTC
+gpg:                using EDDSA key 4C7D0C567C7C0946ABC377B0F0F7A7410AFADB6A
+gpg: Good signature from &quot;GESF2024 Attendee &lt;attendee@gesf2024.event&gt;&quot; [ultimate]
+Author: GESF2024 Attendee &lt;attendee@gesf2024.event&gt;
+Date:   Tue Oct 15 10:46:04 2024 +0000
+
+    add gitignore
+
+~/lab1/hello-world$
+</div></code></pre>
+<p>Excellent! The new signing key is successfully in use for this repo (and all others if you did <code>--global</code>).</p>
+<p>The final thing to do is ensure that the signing and encryption keys are the only keys on this machine. We can
+accomplish this by:</p>
+<ul>
+<li>Exporting the public key, the secret key, and the subkeys into separate file</li>
+<li>Removing the secret key with <code>--delete-secret-keys</code></li>
+<li>Reimporting only the subkeys with <code>--import</code> on the file containing only the subkeys</li>
+</ul>
+<p>Export the three keys with the <code>--export</code> (for public), <code>--export-secret-key</code> (for the original key), and
+<code>--export-secret-subkeys</code> (for the subkeys):</p>
+<pre class="hljs"><code><div>~/lab1/hello-world$ cd ..
+
+# Use your own Key ID for the following commands. If you need to retrieve it use: gpg --list-keys
+
+~/lab1$ gpg --output gesf24atnd.public.gpg --export-secret-key C50A324593A99648D7B064C9E41D7D6F14B3872D
+
+~/lab1$ gpg --output gesf24atnd.secret.gpg --export-secret-key C50A324593A99648D7B064C9E41D7D6F14B3872D
+
+~/lab1$ gpg --output gesf24atnd.subkeys.gpg --export-secret-subkeys C50A324593A99648D7B064C9E41D7D6F14B3872D
+
+~/lab1$
+</div></code></pre>
+<p>At this point, take all the key files and put them somewhere safe (like a USB stick), and put said USB stick somewhere
+physically safe.</p>
+<p>Now, delete the secret keys from the local keyring:</p>
+<pre class="hljs"><code><div>~/lab1$ gpg --delete-secret-keys C50A324593A99648D7B064C9E41D7D6F14B3872D
+
+gpg (GnuPG) 2.4.4; Copyright (C) 2024 g10 Code GmbH
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+sec  ed25519/E41D7D6F14B3872D 2024-10-15 GESF2024 Attendee &lt;attendee@gesf2024.event&gt;
+
+Delete this key from the keyring? (y/N) y
+This is a secret key! - really delete? (y/N) y
+
+~/lab1$
+</div></code></pre>
+<p>You should have been asked to confirm three more times after saying &quot;yes&quot;.</p>
+<p>Then, import only the file containing the subkeys (which should prompt you for the password again):</p>
+<pre class="hljs"><code><div>~/lab1$ gpg --import gesf24atnd.subkeys.gpg
+
+gpg: key E41D7D6F14B3872D: &quot;GESF2024 Attendee &lt;attendee@gesf2024.event&gt;&quot; not changed
+gpg: To migrate 'secring.gpg', with each smartcard, run: gpg --card-status
+gpg: key E41D7D6F14B3872D: secret key imported
+gpg: Total number processed: 1
+gpg:              unchanged: 1
+gpg:       secret keys read: 1
+gpg:   secret keys imported: 1
+
+~/lab1$
+</div></code></pre>
+<p>After importing, your signing key should still be functional, so add something worth committing to your repo:</p>
+<pre class="hljs"><code><div>~/lab1$ cd hello-world/
+
+~/lab1/hello-world$ echo &quot;*.pdf&quot; &gt;&gt; .gitignore
+
+~/lab1/hello-world$ git add .gitignore &amp;&amp; git commit -m &quot;add pdf to gitignore&quot;
+
+[main a4cd7b6] add pdf to gitignore
+ 1 file changed, 1 insertion(+)
+
+~/lab1/hello-world$ git log -1 --show-signature
+
+commit a4cd7b629e902dd7781c8d7df85ac416adec4a14 (HEAD -&gt; main)
+gpg: Signature made Tue Oct 15 10:57:52 2024 UTC
+gpg:                using EDDSA key 4C7D0C567C7C0946ABC377B0F0F7A7410AFADB6A
+gpg: Good signature from &quot;GESF2024 Attendee &lt;attendee@gesf2024.event&gt;&quot; [ultimate]
+Author: GESF2024 Attendee &lt;attendee@gesf2024.event&gt;
+Date:   Tue Oct 15 10:57:52 2024 +0000
+
+    add pdf to gitignore
+
+~/lab1/hello-world$
+</div></code></pre>
+<p>Now if you try to edit the key and add more subkeys, that won't work:</p>
+<pre class="hljs"><code><div>~/lab1/hello-world$ gpg --edit-key C50A324593A99648D7B064C9E41D7D6F14B3872D   # Use your own Key ID
+
+...
+
+gpg&gt; addkey
+
+Need the secret key to do this.
+
+gpg&gt; q
+
+~/lab1/hello-world$
+</div></code></pre>
+<p>You will have to re-import the secret key in order to do that.</p>
+<p>Use the <code>--import</code> option on <code>gpg</code> to re-import the secret key:</p>
+<pre class="hljs"><code><div>~/lab1/hello-world$ gpg --import ~/lab1/gesf24atnd.secret.gpg
+
+gpg: key E41D7D6F14B3872D: &quot;GESF2024 Attendee &lt;attendee@gesf2024.event&gt;&quot; not changed
+gpg: key E41D7D6F14B3872D: secret key imported
+gpg: Total number processed: 1
+gpg:              unchanged: 1
+gpg:       secret keys read: 1
+gpg:   secret keys imported: 1
+gpg:  secret keys unchanged: 1
+
+~/lab1/hello-world$ gpg --edit-key C50A324593A99648D7B064C9E41D7D6F14B3872D
+
+...
+
+gpg&gt; addkey
+
+Please select what kind of key you want:
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+   (5) Elgamal (encrypt only)
+   (6) RSA (encrypt only)
+  (10) ECC (sign only)
+  (12) ECC (encrypt only)
+  (14) Existing key from card
+Your selection? # ctrl C
+
+gpg: signal Interrupt caught ... exiting
+
+~/lab1/hello-world$
+</div></code></pre>
+<p>And there you go! Now when you need to regenerate an expired key, just import the secret again, regenerate, and delete
+it. You definitely do not want anybody else to get that secret key!</p>
+<h3 id="7-clean-up">7. Clean up</h3>
+<p>Push all remaining commits:</p>
+<pre class="hljs"><code><div>~/lab1/hello-world$ git push
+
+...
+
+~/lab1/hello-world$
+</div></code></pre>
+<h2 id="end-of-lab-1---stop-here">END OF LAB 1 - STOP HERE</h2>
+<br>
+<h2 id="lab-2---%22keyless%22-cryptography-artifact-signing">Lab 2 - &quot;Keyless&quot; Cryptography: Artifact Signing</h2>
+<p>Cosign is an open-source project under the Sigstore umbrella, focused on signing and verifying container images, making
+it easier to ensure the integrity and publisher identity of containerized software. Sigstore, meanwhile, is a project
+sponsored by the Linux Foundation to improve the security of the software supply chain. It provides public, transparent,
+and auditable infrastructure for securely storing and retrieving cryptographic signing materials.</p>
+<p>In this lab, we'll walk through the basic usage of Cosign, including signing and verifying container images.</p>
+<h3 id="1-install-cosign">1. Install Cosign</h3>
+<p>Let's install Cosign on our lab system. Its a very good idea always to check the official documentation for the latest
+installation instructions which you can find <a href="https://docs.sigstore.dev/cosign/system_config/installation/">here</a>. For
+our lab we are using an Ubuntu machine and can use the official dpkg-based method.</p>
+<pre class="hljs"><code><div>~$ LATEST_VERSION=$(curl https://api.github.com/repos/sigstore/cosign/releases/latest | grep tag_name | cut -d : -f2 | tr -d &quot;v\&quot;, &quot;)
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  193k    0  193k    0     0   564k      0 --:--:-- --:--:-- --:--:--  566k
+
+~$ curl -O -L &quot;https://github.com/sigstore/cosign/releases/latest/download/cosign_${LATEST_VERSION}_amd64.deb&quot;
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 43.9M  100 43.9M    0     0  36.4M      0  0:00:01  0:00:01 --:--:--  112M
+
+~$ sudo dpkg -i cosign_${LATEST_VERSION}_amd64.deb
+
+Selecting previously unselected package cosign.
+(Reading database ... 68102 files and directories currently installed.)
+Preparing to unpack cosign_2.4.1_amd64.deb ...
+Unpacking cosign (2.4.1) ...
+Setting up cosign (2.4.1) ...
+
+~$
+</div></code></pre>
+<p>This command will install the latest version of Cosign directly from the repository. You can verify the installation by
+running the <code>version</code> command:</p>
+<pre class="hljs"><code><div>~$ cosign version
+
+  ______   ______        _______. __    _______ .__   __.
+ /      | /  __  \      /       ||  |  /  _____||  \ |  |
+|  ,----'|  |  |  |    |   (----`|  | |  |  __  |   \|  |
+|  |     |  |  |  |     \   \    |  | |  | |_ | |  . `  |
+|  `----.|  `--'  | .----)   |   |  | |  |__| | |  |\   |
+ \______| \______/  |_______/    |__|  \______| |__| \__|
+cosign: A tool for Container Signing, Verification and Storage in an OCI registry.
+
+GitVersion:    v2.4.1
+GitCommit:     9a4cfe1aae777984c07ce373d97a65428bbff734
+GitTreeState:  clean
+BuildDate:     2024-10-03T17:01:50Z
+GoVersion:     go1.22.7
+Compiler:      gc
+Platform:      linux/amd64
+
+~$
+</div></code></pre>
+<p>There are a lot of options for Cosign; you can view them by running the <code>cosign help</code> command, try it:</p>
+<pre class="hljs"><code><div>~$ cosign help
+
+A tool for Container Signing, Verification and Storage in an OCI registry.
+
+Usage:
+cosign [command]
+
+Available Commands:
+attach                  Provides utilities for attaching artifacts to other artifacts in a registry
+attest                  Attest the supplied container image.
+attest-blob             Attest the supplied blob.
+clean                   Remove all signatures from an image.
+completion              Generate completion script
+copy                    Copy the supplied container image and signatures.
+dockerfile              Provides utilities for discovering images in and performing operations on Dockerfiles
+download                Provides utilities for downloading artifacts and attached artifacts in a registry
+env                     Prints Cosign environment variables
+generate                Generates (unsigned) signature payloads from the supplied container image.
+generate-key-pair       Generates a key-pair.
+help                    Help about any command
+import-key-pair         Imports a PEM-encoded RSA or EC private key.
+initialize              Initializes SigStore root to retrieve trusted certificate and key targets for verification.
+load                    Load a signed image on disk to a remote registry
+login                   Log in to a registry
+manifest                Provides utilities for discovering images in and performing operations on Kubernetes manifests
+public-key              Gets a public key from the key-pair.
+save                    Save the container image and associated signatures to disk at the specified directory.
+sign                    Sign the supplied container image.
+sign-blob               Sign the supplied blob, outputting the base64-encoded signature to stdout.
+tree                    Display supply chain security related artifacts for an image such as signatures, SBOMs and attestations
+triangulate             Outputs the located cosign image reference. This is the location where cosign stores the specified artifact type.
+upload                  Provides utilities for uploading artifacts to a registry
+verify                  Verify a signature on the supplied container image
+verify-attestation      Verify an attestation on the supplied container image
+verify-blob             Verify a signature on the supplied blob
+verify-blob-attestation Verify an attestation on the supplied blob
+version                 Prints the version
+
+Flags:
+    -h, --help=false:
+	help for cosign
+
+    --output-file='':
+	log output to a file
+
+    -t, --timeout=3m0s:
+	timeout for commands
+
+    -d, --verbose=false:
+	log debug output
+
+Additional help topics:
+cosign piv-tool                This cosign was not built with piv-tool support!
+cosign pkcs11-tool             This cosign was not built with pkcs11-tool support!
+
+Use &quot;cosign [command] --help&quot; for more information about a command.
+
+~$
+</div></code></pre>
+<p>The beauty of the help command is that you can also get help for commands like <code>cosign [command] --help</code>, for example:</p>
+<pre class="hljs"><code><div>~$ cosign generate-key-pair --help
+
+Generates a key-pair for signing.
+
+Usage:
+cosign generate-key-pair [flags]
+
+Examples:
+  cosign generate-key-pair [--kms KMSPATH]
+
+  # generate key-pair and write to cosign.key and cosign.pub files
+  cosign generate-key-pair
+
+  # generate key-pair and write to custom named my-name.key and my-name.pub files
+  cosign generate-key-pair --output-key-prefix my-name
+
+  # generate a key-pair in Azure Key Vault
+  cosign generate-key-pair --kms azurekms://[VAULT_NAME][VAULT_URI]/[KEY]
+
+  # generate a key-pair in AWS KMS
+  cosign generate-key-pair --kms awskms://[ENDPOINT]/[ID/ALIAS/ARN]
+
+  # generate a key-pair in Google Cloud KMS
+  cosign generate-key-pair --kms gcpkms://projects/[PROJECT]/locations/global/keyRings/[KEYRING]/cryptoKeys/[KEY]
+
+  # generate a key-pair in Hashicorp Vault
+  cosign generate-key-pair --kms hashivault://[KEY]
+
+  # generate a key-pair in Kubernetes Secret
+  cosign generate-key-pair k8s://[NAMESPACE]/[NAME]
+
+  # generate a key-pair in GitHub
+  cosign generate-key-pair github://[OWNER]/[PROJECT_NAME]
+
+  # generate a key-pair in GitLab with project name
+  cosign generate-key-pair gitlab://[OWNER]/[PROJECT_NAME]
+
+  # generate a key-pair in GitLab with project id
+  cosign generate-key-pair gitlab://[PROJECT_ID]
+
+CAVEATS:
+  This command interactively prompts for a password. You can use
+  the COSIGN_PASSWORD environment variable to provide one.
+
+Flags:
+    -h, --help=false:
+	help for generate-key-pair
+
+    --kms='':
+	create key pair in KMS service to use for signing
+
+    --output-key-prefix='cosign':
+	name used for generated .pub and .key files (defaults to `cosign`)
+
+Global Flags:
+      --output-file string   log output to a file
+  -t, --timeout duration     timeout for commands (default 3m0s)
+  -d, --verbose              log debug output
+
+~$
+</div></code></pre>
+<p>One of the most powerful things are the examples under the <code>Examples:</code> heading. Check them out and use them for your own
+use case or borrow some good ideas!</p>
+<h3 id="2-create-a-container-image">2. Create a container image</h3>
+<p>Let's create a simple image to use for our lab. We will use the <code>main.go</code> code from our previous lab to build an image
+with Docker and sign it with Cosign. First, create a directory to hold the files for this lab. Then, copy the code from
+its previous location.</p>
+<pre class="hljs"><code><div>~$ mkdir ~/docker-image &amp;&amp; cd $_
+
+~/docker-image$ cp ~/lab1/main.go .
+</div></code></pre>
+<p>Now, create a Dockerfile to build an image that runs the Go program.</p>
+<ul>
+<li>We will use a preexisting image that has Golang already in it (<code>FROM docker.io/golang:1.23</code>)</li>
+<li>Copy the source file into the image using the Dockerfile COPY command (<code>COPY ...</code>)</li>
+<li>Run the program (<code>CMD [&quot;go&quot;,&quot;run&quot;,&quot;hello.go&quot;]</code>)</li>
+</ul>
+<pre class="hljs"><code><div>~/docker-image$ nano Dockerfile &amp;&amp; cat $_
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">FROM</span> docker.io/golang:<span class="hljs-number">1.23</span>
+<span class="hljs-keyword">WORKDIR</span><span class="bash"> /go/src/hello</span>
+<span class="hljs-keyword">COPY</span><span class="bash"> ./main.go /go/src/hello</span>
+<span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">8080</span>
+<span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-string">"go"</span>,<span class="hljs-string">"run"</span>,<span class="hljs-string">"main.go"</span>]</span>
+</div></code></pre>
+<pre class="hljs"><code><div>~/docker-image$
+</div></code></pre>
+<p>To build the Docker image, use the <code>docker image build</code> command. The following command uses:</p>
+<ul>
+<li><code>-t</code> - tags the image with a name</li>
+<li><code>.</code> ( the dot ) - build the image from the current directory. Docker will search for a file named <code>Dockerfile</code> in the
+current directory and use it to build the image.</li>
+</ul>
+<pre class="hljs"><code><div>~/docker-image$ sudo docker image build -t rx-m-cosign:v1 .
+
+sudo docker image build -t rx-m-cosign:v1 .
+[+] Building 23.7s (8/8) FINISHED                                                                         docker:default
+ =&gt; [internal] load build definition from Dockerfile                                                                0.0s
+ =&gt; =&gt; transferring dockerfile: 154B                                                                                0.0s
+ =&gt; [internal] load metadata for docker.io/library/golang:1.23                                                      1.0s
+ =&gt; [internal] load .dockerignore                                                                                   0.0s
+ =&gt; =&gt; transferring context: 2B                                                                                     0.0s
+ =&gt; [1/3] FROM docker.io/library/golang:1.23@sha256:a7f2fc9834049c1f5df787690026a53738e55fc097cd8a4a93faa3e06c67e  22.2s
+ =&gt; =&gt; resolve docker.io/library/golang:1.23@sha256:a7f2fc9834049c1f5df787690026a53738e55fc097cd8a4a93faa3e06c67ee  0.0s
+ =&gt; =&gt; sha256:a7f2fc9834049c1f5df787690026a53738e55fc097cd8a4a93faa3e06c67ee32 9.74kB / 9.74kB                      0.0s
+ =&gt; =&gt; sha256:345d5e81c88be2c500edf00ed1dca6be656e4485cd79e4e0bcc73a90361910e0 2.32kB / 2.32kB                      0.0s
+ =&gt; =&gt; sha256:cdd62bf39133c498a16f7a7b1b6555ba43d02b2511c508fa4c0a9b1975ffe20e 49.56MB / 49.56MB                    0.8s
+ =&gt; =&gt; sha256:a47cff7f31e941e78bf63ca19f0811b675283e2c00ddea10c57f78d93b2bc343 24.05MB / 24.05MB                    0.9s
+ =&gt; =&gt; sha256:21bf67eca23e1da144aae7c021a7e5765cd680bb2bb16fa30abfb0fbe2bd81b1 2.86kB / 2.86kB                      0.0s
+ =&gt; =&gt; sha256:a173f2aee8e962ea19db1e418ae84a0c9f71480b51f768a19332dfa83d7722a5 64.39MB / 64.39MB                    1.2s
+ =&gt; =&gt; sha256:c77f309ae60d503a68cf1c32cf69b48daff39d7f8e9ae015734d1a8cfb762cbb 92.26MB / 92.26MB                    2.1s
+ =&gt; =&gt; sha256:2ac1f1163629431c9f488c4d6ff6afb5c73021839723b50bafe245663ad3d9df 74.01MB / 74.01MB                    1.9s
+ =&gt; =&gt; extracting sha256:cdd62bf39133c498a16f7a7b1b6555ba43d02b2511c508fa4c0a9b1975ffe20e                           3.7s
+ =&gt; =&gt; sha256:4a078442501cc61dd9ee8eae2586e5b7e2abb756ccabceb5c1b2154700631cf0 126B / 126B                          1.3s
+ =&gt; =&gt; sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 32B / 32B                            1.4s
+ =&gt; =&gt; extracting sha256:a47cff7f31e941e78bf63ca19f0811b675283e2c00ddea10c57f78d93b2bc343                           0.9s
+ =&gt; =&gt; extracting sha256:a173f2aee8e962ea19db1e418ae84a0c9f71480b51f768a19332dfa83d7722a5                           4.0s
+ =&gt; =&gt; extracting sha256:c77f309ae60d503a68cf1c32cf69b48daff39d7f8e9ae015734d1a8cfb762cbb                           3.8s
+ =&gt; =&gt; extracting sha256:2ac1f1163629431c9f488c4d6ff6afb5c73021839723b50bafe245663ad3d9df                           7.8s
+ =&gt; =&gt; extracting sha256:4a078442501cc61dd9ee8eae2586e5b7e2abb756ccabceb5c1b2154700631cf0                           0.0s
+ =&gt; =&gt; extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1                           0.0s
+ =&gt; [internal] load build context                                                                                   0.0s
+ =&gt; =&gt; transferring context: 532B                                                                                   0.0s
+ =&gt; [2/3] WORKDIR /go/src/hello                                                                                     0.3s
+ =&gt; [3/3] COPY ./main.go /go/src/hello                                                                              0.0s
+ =&gt; exporting to image                                                                                              0.1s
+ =&gt; =&gt; exporting layers                                                                                             0.0s
+ =&gt; =&gt; writing image sha256:e70bdb75b062ebb7e413cbdd92785d3cedafad4f4f34335a84c655068f7cb9dc                        0.0s
+ =&gt; =&gt; naming to docker.io/library/rx-m-cosign:v1                                                                   0.0s
+
+~/docker-image$
+</div></code></pre>
+<p>Let's check the current docker images:</p>
+<pre class="hljs"><code><div>~/docker-image$ sudo docker image ls
+
+REPOSITORY    TAG       IMAGE ID       CREATED          SIZE
+rx-m-cosign   v1        e70bdb75b062   35 seconds ago   838MB
+git-daemon    latest    bc7d9e90478e   2 hours ago      21.4MB
+
+~/docker-image$
+</div></code></pre>
+<p>You can see the image we just built with the tag <code>rx-m-cosign:v1</code>.</p>
+<h3 id="21-run-the-image">2.1. Run the image</h3>
+<p>After the build process completes, you can run the Docker container using the command: <code>docker container run</code> with the
+following options:</p>
+<ul>
+<li><code>-d</code> runs this container in the background</li>
+<li><code>--name</code>: name the container <code>rx-m-cosign</code></li>
+<li><code>rx-m-cosign:v1</code>: the image tag to use for the container</li>
+</ul>
+<pre class="hljs"><code><div>~/docker-image$ sudo docker container run -d --name rx-m-cosign rx-m-cosign:v1
+
+
+~/docker-image$
+</div></code></pre>
+<p>To see our container running, we can use <code>docker container ls</code>:</p>
+<pre class="hljs"><code><div>~/docker-image$ sudo docker container ls
+
+CONTAINER ID   IMAGE            COMMAND                  CREATED         STATUS         PORTS      NAMES
+cc517aafbfad   rx-m-cosign:v1   &quot;go run main.go&quot;         2 minutes ago   Up 2 minutes   8080/tcp   rx-m-cosign
+
+~/docker-image$
+</div></code></pre>
+<p>Try out the application:</p>
+<blockquote>
+<p>N.B. the nested shell command gets the IP address of the container from the container's metadata</p>
+</blockquote>
+<pre class="hljs"><code><div>~/docker-image$ curl $(sudo docker container inspect -f '{{ .NetworkSettings.IPAddress }}' rx-m-cosign):8080
+
+Hello World!
+
+~/docker-image$
+</div></code></pre>
+<p>Now that we have a working container image, we can sign it using Cosign!</p>
+<h3 id="3-creating-and-managing-keys">3. Creating and managing keys</h3>
+<p>Cosign uses a pair of keys, <em>private</em> and <em>public</em>, for signing and verifying respectively. The
+<code>cosign generate-key-pair</code> command is used to create a private and public key for signing and verifying signatures with
+Cosign.</p>
+<p>The command below will generate a private key (<code>cosign.key</code>) and a public key (<code>cosign.pub</code>). The keys are
+password-protected. Upon running the command, you'll be asked to enter a password which will be used to encrypt the
+private key. You will need this password every time you use the private key to sign something. For the lab, use a simple
+and/or memorable password for the key and make note of it for subsequent use.</p>
+<p>Generate a key-pair:</p>
+<pre class="hljs"><code><div>~/docker-image$ mkdir ~/cosign-keys &amp;&amp; cd $_
+
+~/cosign-keys$ cosign generate-key-pair
+
+Enter password for private key:             &lt;&lt;&lt;&lt; type your password
+Enter password for private key again:       &lt;&lt;&lt;&lt; type your password
+Private key written to cosign.key
+Public key written to cosign.pub
+
+~/cosign-keys$
+</div></code></pre>
+<p>You'll want to keep these keys in a secure location. The private key especially should not be shared or exposed. Anyone
+with access to your private key could sign images or other artifacts as you!</p>
+<p>The public key, on the other hand, is intended to be distributed. Anyone wishing to verify a signature you've made will
+use this public key.</p>
+<p>Here are some additional <code>generate-key-pair</code> command flag examples:</p>
+<ul>
+<li><code>--kms</code> (optional) - if you want to store the private key in a KMS, you can use this flag followed by the KMS provider
+URL.</li>
+<li><code>--password</code> (optional) - password for encrypting the private key. If not provided, the command will prompt for a
+password. Use this flag carefully, as command-line history may record this password.</li>
+</ul>
+<h3 id="4-signing-a-container-image">4. Signing a container image</h3>
+<p>Now we have our container image <code>rx-m-cosign:v1</code> and our Cosign keys so it is time to sign our image! <em>Make sure you are
+in the <code>~/cosign-keys</code> directory where you generated your keys</em>, then run the following command:</p>
+<pre class="hljs"><code><div>~/cosign-keys$ ls -lh
+
+total 8.0K
+-rw------- 1 ubuntu ubuntu 653 Oct 16 21:35 cosign.key
+-rw-r--r-- 1 ubuntu ubuntu 178 Oct 16 21:35 cosign.pub
+
+~/cosign-keys$
+</div></code></pre>
+<p>From the command above we can see that we have our keys in place. Now let's sign the image <code>rx-m-cosign:v1</code> using the
+private key <code>cosign.key</code>.</p>
+<pre class="hljs"><code><div>~/cosign-keys$ cosign sign --key cosign.key rx-m-cosign:v1
+
+Enter password for private key:           &lt;&lt;&lt;&lt; type your password
+
+WARNING: Image reference rx-m-cosign:v1 uses a tag, not a digest, to identify the image to sign.
+    This can lead you to sign a different image than the intended one. Please use a
+    digest (example.com/ubuntu@sha256:abc123...) rather than tag
+    (example.com/ubuntu:latest) for the input to cosign. The ability to refer to
+    images by tag will be removed in a future release.
+
+Error: signing [rx-m-cosign:v1]: accessing entity: GET https://index.docker.io/v2/library/rx-m-cosign/manifests/v1: UNAUTHORIZED: authentication required; [map[Action:pull Class: Name:library/rx-m-cosign Type:repository]]
+main.go:74: error during command execution: signing [rx-m-cosign:v1]: accessing entity: GET https://index.docker.io/v2/library/rx-m-cosign/manifests/v1: UNAUTHORIZED: authentication required; [map[Action:pull Class: Name:library/rx-m-cosign Type:repository]]
+
+~/cosign-keys$
+</div></code></pre>
+<p>Wow what happened here? We got an error! Let's try to understand what happened. Notice this first line of the output:</p>
+<pre class="hljs"><code><div>WARNING: Image reference rx-m-cosign:v1 uses a tag, not a digest, to identify the image to sign.
+</div></code></pre>
+<p>This warning is in the response about using a <code>tag</code> rather than a <code>digest</code> to identify the image. It is best practice to
+use a <code>digest</code> to ensure you're signing the exact image you intend to. In a production setting, using the image digest
+instead of the tag adds an extra layer of security because image tags can be moved, but digests are immutable.</p>
+<pre class="hljs"><code><div>~/cosign-keys$ sudo docker image ls rx-m-cosign --digests
+
+REPOSITORY    TAG       DIGEST    IMAGE ID       CREATED          SIZE
+rx-m-cosign   v1        &lt;none&gt;    e70bdb75b062   21 minutes ago   838MB
+
+~/cosign-keys$
+</div></code></pre>
+<p>Wait, there is no <code>digest</code> for our image! Why doesn't the image have a <code>digest</code>?</p>
+<p>The Docker daemon does not compute the digest for an image until it's pushed to a registry. This is because the digest
+that Cosign needs is the <code>SHA256</code> hash of the image manifest, which is generated by a registry upon push. Notice this
+error message:</p>
+<pre class="hljs"><code><div>Error: signing [rx-m-cosign:v1]: accessing entity: GET https://index.docker.io/v2/library/rx-m-cosign/manifests/v1: UNAUTHORIZED: authentication required;
+</div></code></pre>
+<p>The auth error message you're seeing is due to a lack of proper authentication. The <code>cosign sign</code> command needs to fetch
+the manifest of the image from the image's registry, in this case Docker Hub; our image doesn't have a hostname as part
+of its name and the Docker Engine is hard-coded to call Docker Hub unless it finds a hostname in an image's name.</p>
+<p>You can resolve this issue by logging into the Docker Hub registry using <code>docker login</code> command (if we have an account).
+We can work around this requirement in our lab by using a private and/or local registry.</p>
+<h3 id="41-local-registry">4.1. Local registry</h3>
+<p>We can sign a locally built image without pushing it to a public registry or our organization's private registry by
+running a local container registry on our lab VM. Docker provides a free open source registry container image that is
+easy to launch using a single <code>docker</code> command:</p>
+<pre class="hljs"><code><div>~/cosign-keys$ sudo docker container run -d -p 5000:5000 --name registry registry:2
+
+Unable to find image 'registry:2' locally
+2: Pulling from library/registry
+1cc3d825d8b2: Pull complete 
+85ab09421e5a: Pull complete 
+40960af72c1c: Pull complete 
+e7bb1dbb377e: Pull complete 
+a538cc9b1ae3: Pull complete 
+Digest: sha256:ac0192b549007e22998eb74e8d8488dcfe70f1489520c3b144a6047ac5efbe90
+Status: Downloaded newer image for registry:2
+86fe986ff333620264abba41ec4a1bd4770fdffb90b056685f4eb53d53a7192f
+
+~/cosign-keys$
+</div></code></pre>
+<p>Next, tag your image using <code>localhost</code> as the hostname and push it to your locally-running registry:</p>
+<pre class="hljs"><code><div>~/cosign-keys$ sudo docker image tag rx-m-cosign:v1 localhost:5000/rx-m-cosign:v1
+
+~/cosign-keys$ sudo docker image push localhost:5000/rx-m-cosign:v1
+
+The push refers to repository [localhost:5000/rx-m-cosign]
+af369a6777e7: Pushed 
+883916f5d9f9: Pushed 
+5f70bf18a086: Pushed 
+8917293be6e6: Pushed 
+bb0b3c8fba07: Pushed 
+e189cd766f83: Pushed 
+f91dc7a486d9: Pushed 
+3e14a6961052: Pushed 
+d50132f2fe78: Pushed 
+v1: digest: sha256:44f873350dc583a833cd22a0c5056b18b7f665e5cb93c6f8af6b83206a3815e4 size: 2204
+
+~/cosign-keys$
+</div></code></pre>
+<p>Verify that the image has been assigned a digest by the registry:</p>
+<pre class="hljs"><code><div>~/cosign-keys$ sudo docker image ls localhost:5000/rx-m-cosign --digests
+
+REPOSITORY                   TAG       DIGEST                                                                    IMAGE ID       CREATED          SIZE
+localhost:5000/rx-m-cosign   v1        sha256:44f873350dc583a833cd22a0c5056b18b7f665e5cb93c6f8af6b83206a3815e4   e70bdb75b062   33 minutes ago   838MB
+
+~/cosign-keys$
+</div></code></pre>
+<p>As you can see now we have a digest for the image we pushed to our local registry. Grab the image digest for the
+<code>localhost:5000/rx-m-cosign:v1</code> and store it in environment variable for subsequent use:</p>
+<pre class="hljs"><code><div>~/cosign-keys$ export IMAGE_DIGEST=$(sudo docker image ls --digests | grep local | awk '{print $3}') &amp;&amp; echo $IMAGE_DIGEST
+
+sha256:44f873350dc583a833cd22a0c5056b18b7f665e5cb93c6f8af6b83206a3815e4
+
+~/cosign-keys$
+</div></code></pre>
+<p>Now, you can sign this image using <code>cosign</code> and be sure to use the <code>IMAGE_DIGEST</code> variable. That way we will be sure we
+are signing the right image. We already discussed why we should use the digest instead of the tag and that is to to add
+extra security.</p>
+<pre class="hljs"><code><div>~/cosign-keys$ cosign sign --key cosign.key localhost:5000/rx-m-cosign:@$IMAGE_DIGEST
+
+Enter password for private key:           &lt;&lt;&lt;&lt; type your password
+
+	The sigstore service, hosted by sigstore a Series of LF Projects, LLC, is provided pursuant to the Hosted Project Tools Terms of Use, available at https://lfprojects.org/policies/hosted-project-tools-terms-of-use/.
+	Note that if your submission includes personal data associated with this signed artifact, it will be part of an immutable record.
+	This may include the email address associated with the account with which you authenticate your contractual Agreement.
+	This information will be used for signing this artifact and will be stored in public transparency logs and cannot be removed later, and is subject to the Immutable Record notice at https://lfprojects.org/policies/hosted-project-tools-immutable-records/.
+
+By typing 'y', you attest that (1) you are not submitting the personal data of any other person; and (2) you understand and agree to the statement and the Agreement terms at the URLs listed above.
+Are you sure you would like to continue? [y/N] y
+tlog entry created with index: 140760422
+Pushing signature to: localhost:5000/rx-m-cosign
+
+~/cosign-keys$
+</div></code></pre>
+<p>After pressing <code>y</code> our image is signed! Next we will verify its signature.</p>
+<h3 id="5-verifying-a-signed-image">5. Verifying a signed image</h3>
+<p>The signed image can then be verified with <code>cosign</code>. This time we will use the <code>tag</code> and we can do that because the
+<code>tag</code> is pointing to the same <code>digest</code> that we signed. To verify the image we will use our public key <code>cosign.pub</code> that
+we generated earlier.</p>
+<pre class="hljs"><code><div>~/cosign-keys$ cosign verify --key cosign.pub localhost:5000/rx-m-cosign:v1
+
+Verification for localhost:5000/rx-m-cosign:v1 --
+The following checks were performed on each of these signatures:
+  - The cosign claims were validated
+  - Existence of the claims in the transparency log was verified offline
+  - The signatures were verified against the specified public key
+
+[{&quot;critical&quot;:{&quot;identity&quot;:{&quot;docker-reference&quot;:&quot;localhost:5000/rx-m-cosign&quot;},&quot;image&quot;:{&quot;docker-manifest-digest&quot;:&quot;sha256:44f873350dc583a833cd22a0c5056b18b7f665e5cb93c6f8af6b83206a3815e4&quot;},&quot;type&quot;:&quot;cosign container image signature&quot;},&quot;optional&quot;:{&quot;Bundle&quot;:{&quot;SignedEntryTimestamp&quot;:&quot;MEUCIQCSnR/8xODSmigXBDvRjLa9EJP6CTVe4Sm4f29Tu3IJwgIgBZAimZDXLzm2gpMJy4HYL/DCfvxpYM46tOEJqj/f/xM=&quot;,&quot;Payload&quot;:{&quot;body&quot;:&quot;eyJhcGlWZXJzaW9uIjoiMC4wLjEiLCJraW5kIjoiaGFzaGVkcmVrb3JkIiwic3BlYyI6eyJkYXRhIjp7Imhhc2giOnsiYWxnb3JpdGhtIjoic2hhMjU2IiwidmFsdWUiOiJmMDcwZGFjMGQ5Yzg0NTNjZTUwZTc2MGE2OTcxNDQ2ZjE1MTlkYmIzNzRhODhmNzFhOWM3ZjBmMjkxMmUxNjZkIn19LCJzaWduYXR1cmUiOnsiY29udGVudCI6Ik1FUUNJQnJ0akJvRTNDdGNaSHVnY2p2VkZ0UDFYaFJyVGp4dHpiRFM3dHNEYnRLOEFpQlRwL01nNHdKOVgrcWdUc0VuVkV0Q2Y2UGVCWnhheG05OWI2Y1lpeFdFVEE9PSIsInB1YmxpY0tleSI6eyJjb250ZW50IjoiTFMwdExTMUNSVWRKVGlCUVZVSk1TVU1nUzBWWkxTMHRMUzBLVFVacmQwVjNXVWhMYjFwSmVtb3dRMEZSV1VsTGIxcEplbW93UkVGUlkwUlJaMEZGU0VreWFqZHdUMjE2TlhwTVdtWkZlR3hpTldOU1pDdHhZalZUVVFwNlV6aHRhR3R3YVd0allXWTNUbTR5U2tkaVZXTTVOMXBoY0RSS2JEQnpOR3RRYlRkNk1uQlRhVmw1ZHpKcFkxZGtaVEp4Y25NcmRVMW5QVDBLTFMwdExTMUZUa1FnVUZWQ1RFbERJRXRGV1MwdExTMHRDZz09In19fX0=&quot;,&quot;integratedTime&quot;:1729115809,&quot;logIndex&quot;:140760422,&quot;logID&quot;:&quot;c0d23d6ad406973f9559f3ba2d1ca01f84147d8ffc5b8445c224f98b9591801d&quot;}}}}]
+
+~/cosign-keys$
+</div></code></pre>
+<p>Awesome our image is verified!</p>
+<p>Remember, Cosign is designed to integrate with a container registry and it doesn't directly interact with the Docker
+daemon on your local machine. Hence, even for local images, a registry (even if it's a local one) is required.</p>
+<h3 id="6-verify-a-public-image">6. Verify a public image</h3>
+<p>Let's try to verify an image which is not signed by us. For this example we will pull an image from Docker Hub and try to
+verify it.</p>
+<pre class="hljs"><code><div>~/cosign-keys$ cosign verify --key cosign.pub docker.io/library/alpine:latest
+
+Error: no matching signatures
+main.go:69: error during command execution: no matching signatures
+
+~/cosign-keys$
+</div></code></pre>
+<p>That's strange, assuming we can verify any image--so what happened?</p>
+<p>In order to verify a container image using a public key, it needs to be signed with a corresponding private key
+beforehand. Only the person/entity that signed the image (i.e., the owner of the private key) can provide a key to
+verify it.</p>
+<p>The <code>alpine:latest</code> image has not been signed with the private key corresponding to your <code>cosign.pub</code> file. You can only
+successfully verify images that have been signed with your private key.</p>
+<p>As of now, most images on Docker Hub are not signed with Cosign. In practice, you would use Cosign to sign your own
+images (or use images from trusted sources that also use Cosign), and then you would be able to verify those images with
+their corresponding public keys.</p>
+<h3 id="7-food-for-thought-real-world-examples">7. Food for thought: real-world examples</h3>
+<ul>
+<li>
+<p>Kubernetes client, server and source tarballs, binary artifacts, Software Bills of Material (SBOMs) as well as the
+build provenance are signed using Cosign. More in
+<a href="https://kubernetes.io/blog/2022/12/12/kubernetes-release-artifact-signing/">Kubernetes 1.26 release artifact signing</a></p>
+</li>
+<li>
+<p>In an Enterprise Environment: Companies can use Cosign to ensure that only approved and properly signed images are
+deployed in their environments. This could be enforced at the CI/CD pipeline level or with Kubernetes Admission
+Control, refusing to deploy images that don't pass the Cosign verification process.</p>
+</li>
+<li>
+<p>Open Source Projects: Open source maintainers can sign their Docker images using Cosign, allowing users to verify
+the source and integrity of images before using them.</p>
+</li>
+<li>
+<p>Supply Chain Security: By integrating Cosign into a software supply chain, companies can ensure that each step
+(code, build, and deployment) is signed and verifiable. This provides a higher degree of trust and can help prevent
+supply chain attacks.</p>
+</li>
+</ul>
+<h3 id="8-clean-up">8. Clean up</h3>
+<p>Delete your containers:</p>
+<pre class="hljs"><code><div>~/cosign-keys$ sudo docker container rm --force $(sudo docker container ls -aq)
+
+23045e3288d8
+aee2e75568f4
+
+~/cosign-keys$
+</div></code></pre>
+<h2 id="end-of-lab-2---stop-here">END OF LAB 2 - STOP HERE</h2>
+<br>
+<h2 id="lab-3---software-supply-chain-security-in-toto">Lab 3 - Software Supply Chain Security: In-Toto</h2>
+<p>A software supply chain is the series of steps performed when writing, testing, packaging, and distributing software. A
+typical software supply chain is composed of multiple steps (aka. links) that transform or verify the state of the
+project in order to drive it to a release.</p>
+<p>Supply chain security is crucial to the overall security of a software product. An attacker who is able to control a
+step in the supply chain can introduce back doors in the source code, include vulnerable libraries and compromise
+security in many other ways that affect the final product. Many frameworks exist to ensure security in the “last mile”
+(e.g., software updaters), however they may be providing integrity and authentication to a product that is already
+vulnerable if the supply chain was compromised.</p>
+<p>The in-toto project is designed to ensure the integrity of a software product from initiation to end-user installation.
+It does so by transparently disclosing the steps performed, by whom, and in what order. As a result, with some guidance
+from the group creating the software, in-toto allows the user to verify that each required step in the supply chain was
+performed by the right actor and that the artifacts the user is preparing to run are the result of that supply chain.</p>
+<p>The in-toto project is managed by the Secure Systems Lab at NYU and the NJIT Cybersecurity Research Center and was
+originally supported by the US Defense Advanced Research Projects Agency (DARPA) and the Air Force Research Laboratory
+(AFRL).</p>
+<p>In this lab we will create a simple supply chain and secure it with in-toto!</p>
+<h3 id="1-install-in-toto">1. Install in-toto</h3>
+<p>The in-toto project is Python based so we will need to install the Python package manager, pip. Pip can be installed
+using the system's package manager:</p>
+<pre class="hljs"><code><div>~$ sudo apt update &amp;&amp; sudo apt install python3-pip -y
+
+...
+
+Processing triggers for libc-bin (2.39-0ubuntu8.3) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for sgml-base (1.31) ...
+Setting up libfontconfig1:amd64 (2.15.0-1.1ubuntu2) ...
+Setting up libgd3:amd64 (2.3.3-9ubuntu5) ...
+Setting up libc-devtools (2.39-0ubuntu8.3) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.3) ...
+Scanning processes...                                                                                                                                   
+Scanning candidates...                                                                                                                                  
+Scanning linux images...                                                                                                                                
+
+Running kernel seems to be up-to-date.
+
+Restarting services...
+
+Service restarts being deferred:
+ systemctl restart unattended-upgrades.service
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+
+~$
+</div></code></pre>
+<p>On Ubuntu systems, the Python 3 package manager is called pip3; with pip3 installed we can use it to install in-toto
+from the public Python package.</p>
+<p>The <code>sudo</code> command below runs the installation as root, required so that we can update packages in the protected part of
+the system's directory structure. The <code>-H</code> switch causes the command to run in the home directory of the root user. This
+is important when commands write files to the current directory, otherwise temporary files owned by root could get
+created in your user directory.</p>
+<pre class="hljs"><code><div>~$ sudo -H pip3 install --break-system-packages in-toto
+
+...
+
+Installing collected packages: securesystemslib, python-dateutil, pathspec, iso8601, in-toto
+Successfully installed in-toto-3.0.0 iso8601-2.1.0 pathspec-0.12.1 python-dateutil-2.9.0.post0 securesystemslib-1.1.0
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+
+~$
+</div></code></pre>
+<blockquote>
+<p>N.B. Modern OS versions installing Python from system packages will not install other Python Packages using
+pip (or pip3) as this could break the OS packages. The alternative is to use the <code>--break-system-packages</code>
+switch or install the package within a Python virtual environment (recommended for experienced Python devs).</p>
+</blockquote>
+<p>For our purposes, you can ignore the warnings. As long as in-toto reports successfully installed you are set!</p>
+<p>in-toto provides various command line tools that you can use to generate, consume, modify and verify in-toto metadata.
+List what was installed:</p>
+<pre class="hljs"><code><div>~$ ls -l /usr/local/bin/in-toto*
+
+-rwxr-xr-x 1 root root 229 Oct 16 22:15 /usr/local/bin/in-toto-match-products
+-rwxr-xr-x 1 root root 219 Oct 16 22:15 /usr/local/bin/in-toto-mock
+-rwxr-xr-x 1 root root 221 Oct 16 22:15 /usr/local/bin/in-toto-record
+-rwxr-xr-x 1 root root 218 Oct 16 22:15 /usr/local/bin/in-toto-run
+-rwxr-xr-x 1 root root 219 Oct 16 22:15 /usr/local/bin/in-toto-sign
+-rwxr-xr-x 1 root root 221 Oct 16 22:15 /usr/local/bin/in-toto-verify
+
+~$
+</div></code></pre>
+<p>The installed command line tools include:</p>
+<ul>
+<li><code>in-toto-match-products</code> - check if local artifacts match products in passed link</li>
+<li><code>in-toto-mock</code> - variant of <code>in-toto-run</code> useful for trying out how to generate a link without the need for a key</li>
+<li><code>in-toto-record</code> - creates a signed link metadata file in two steps, in order to provide evidence for supply chain
+steps that cannot be carried out by a single command (when <code>in-toto-run</code> isn't sufficient)</li>
+<li><code>in-toto-run</code> - main command line interface for generating link metadata while carrying out a supply chain step</li>
+<li><code>in-toto-sign</code> - sign in-toto link or layout metadata</li>
+<li><code>in-toto-verify</code> - main verification tool of the suite used to verify that the software supply chain of the delivered
+product was carried out as defined in the passed in-toto supply chain layout</li>
+</ul>
+<p>We will use a number of these in this lab.</p>
+<h3 id="2-creating-functionaries">2. Creating functionaries</h3>
+<p>Imagine that we use the following tools in our software supply chain:</p>
+<ul>
+<li>git - for source code control</li>
+<li>go build - to build the service</li>
+<li>go vet - static analysis</li>
+<li>docker - container build</li>
+</ul>
+<p>We can use in-toto to create attestations about each of these steps. However, before you should trust an attestation you
+should be sure that you can prove the identity of the party making the attestation. For this reason in-toto defines
+&quot;functionaries&quot;. A functionary is an authorized person or program performing a supply chain step.</p>
+<p>For example, if we created a build pipeline with <em>exclusive access</em> to a key pair called &quot;app-build&quot; we could use this
+key pair to sign the results of the step. This would allow users to verify that the step was completed, that the
+artifacts produced are not tampered with and that the guarantee of these things is coming from the functionary we trust
+(app-build).</p>
+<p>In a real system you will have distinct functionaries for each stage of the process or for each software tool in the
+process (e.g. GitLab, Jenkins, Tekton, etc.). Individuals can also have keys and can use them to sign attestations like,
+&quot;I reviewed the code and LGTM&quot;, etc.</p>
+<p>In-toto requires that signing keys are in a standard PKCS8/PEM format. GPG keys are typically in OpenPGP format, so we
+cannot use them without complicated conversions; instead, we will use OpenSSL to generate a key pair for our &quot;app-build&quot;
+functionary:</p>
+<pre class="hljs"><code><div>~$ mkdir ~/in-toto ; cd ~/in-toto/
+
+~/in-toto$ openssl genpkey -algorithm rsa -out app-build.pem                # Generate private key
+
+~/in-toto$ openssl rsa -in app-build.pem -pubout -out app-build-pub.pem     # Generate public key
+
+~/in-toto$ ls -l
+
+total 8
+-rw-rw-r-- 1 ubuntu ubuntu  451 Oct 17 21:52 app-build-pub.pem
+-rw------- 1 ubuntu ubuntu 1704 Oct 17 21:52 app-build.pem
+
+~/in-toto$
+</div></code></pre>
+<p>Great our public key and private key are on disk. In a real world setting we would probably remove write permission from
+both keys and make the private key exclusively readable by the program that will run the build steps.</p>
+<h3 id="3-creating-attestations-for-supply-chains-steps">3. Creating attestations for supply chains steps</h3>
+<p>To execute our first step we can use <code>in-toto-run</code> to execute the <code>git clone</code> command. The <code>in-toto-run</code> tool will run the
+designated command and generate a signed link file, allowing users to verify that the command was completed by the
+functionary, identified by our gpg key.</p>
+<p>If necessary, reestablish your <code>GITDADDR</code> variable:</p>
+<pre class="hljs"><code><div>~/in-toto$ export GITDADDR=$(sudo docker container inspect -f '{{ .NetworkSettings.IPAddress }}' git-daemon) &amp;&amp; echo $GITDADDR
+
+172.17.0.2
+
+~/in-toto$
+</div></code></pre>
+<p>Try cloning your hello-world repo from Git Daemon (you will be asked for the passphrase of your gpg key):</p>
+<pre class="hljs"><code><div>~/in-toto$ in-toto-run --step-name vcs-1 --signing-key app-build.pem -- git clone git://$GITDADDR/hello-world.git
+
+~/in-toto$
+</div></code></pre>
+<p>Now take a look at the link file generated:</p>
+<pre class="hljs"><code><div>~/in-toto$ ls -l
+
+total 16
+-rw-rw-r-- 1 ubuntu ubuntu  451 Oct 17 21:52 app-build-pub.pem
+-rw------- 1 ubuntu ubuntu 1704 Oct 17 21:52 app-build.pem
+drwxrwxr-x 3 ubuntu ubuntu 4096 Oct 17 21:59 hello-world
+-rw-rw-r-- 1 ubuntu ubuntu  906 Oct 17 21:59 vcs-1.3ac5bb80.link
+
+~/in-toto$ cat vcs-1*.link
+</div></code></pre>
+<pre class="hljs"><code><div>{
+ <span class="hljs-attr">"signatures"</span>: [
+  {
+   <span class="hljs-attr">"keyid"</span>: <span class="hljs-string">"3ac5bb8023b595dd03495af020a0fc61ee056897d97166900d7d5233883ed5ea"</span>,
+   <span class="hljs-attr">"sig"</span>: <span class="hljs-string">"416f76ed7e204c82ae2d50dfdd4ee34045dee1529e27b38995ba7e12a666d1a859577c9025e3b89a6f311a8e810c20a6dfa1901c2500d8bff05b083d12608b3b8153536dd40cdc177eb8cda8a2d709d596f438c0b308fdd3d33a5634e93b7b1d39e0d7c3cb829fcaa5632878269cb85b0ccd341ec513fb200dc4d0a1249dc25b380c05434ee16926fd09ed48a86ca001eea2b0aa3483c00effaba8de732f3cd7bdb01ed41189c98f390baf075cebd57879a07ea75c6158431baba20170ec4c7111b639c8a7385b014cd74d7c761ee23cc07c3ee92992c313eea18a6411bfea614c165a546e92267f47e35a0737d24b1a58674d7b96d9da946516def98087708d"</span>
+  }
+ ],
+ <span class="hljs-attr">"signed"</span>: {
+  <span class="hljs-attr">"_type"</span>: <span class="hljs-string">"link"</span>,
+  <span class="hljs-attr">"byproducts"</span>: {
+   <span class="hljs-attr">"return-value"</span>: <span class="hljs-number">0</span>,
+   <span class="hljs-attr">"stderr"</span>: <span class="hljs-string">""</span>,
+   <span class="hljs-attr">"stdout"</span>: <span class="hljs-string">""</span>
+  },
+  <span class="hljs-attr">"command"</span>: [
+   <span class="hljs-string">"git"</span>,
+   <span class="hljs-string">"clone"</span>,
+   <span class="hljs-string">"git://172.17.0.2/hello-world.git"</span>
+  ],
+  <span class="hljs-attr">"environment"</span>: {},
+  <span class="hljs-attr">"materials"</span>: {},
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"vcs-1"</span>,
+  <span class="hljs-attr">"products"</span>: {}
+ }
+}
+</div></code></pre>
+<pre class="hljs"><code><div>~/in-toto$
+</div></code></pre>
+<p>Here is what happened behind the scenes:</p>
+<ul>
+<li>in-toto wraps the git clone command</li>
+<li>it hashes the contents of the source code</li>
+<li>then it adds the hash together with other information to a metadata file</li>
+<li>it signs the metadata with our private key using the default gpg key ID (because we don't have more than one)</li>
+</ul>
+<p>Link files have a name of the format <code>&lt;step name&gt;.&lt;functionary keyid prefix&gt;.link</code> and include the following fields:</p>
+<ul>
+<li><code>signatures</code>: a list of signature blocks and keys</li>
+<li><code>signed</code>: the results of the process being attested (program's stdout/stderr and return code)</li>
+<li><code>command</code>: the program executed (if any)</li>
+<li><code>environment</code>: the execution environment</li>
+<li><code>materials</code>: files used in the execution (SHA hashes of)</li>
+<li><code>name</code>: the name of the step (link in the chain)</li>
+<li><code>products</code>: files produced by the execution (SHA hashes of)</li>
+</ul>
+<p>Our version control link file tells us, without doubt, that our functionary ran the command <code>git clone ...</code>. Sometimes
+that is all you need. Often however we want to know what files were involved and what their hash codes were. Perhaps we
+want to know what the output of the command was. We can enrich the link file with lots of additional information.</p>
+<p>For example:</p>
+<ul>
+<li><code>--record-streams</code>  will capture the output of the command executed (stdout and stderr)</li>
+<li><code>--materials</code>  can capture the hash codes of input files <strong>before</strong> the command is run</li>
+<li><code>--products</code> can capture the hash codes of output files <strong>after</strong> the command is run</li>
+</ul>
+<p>We'll run the next step, the build, with all of these settings. We will run the build in a container and it may take a
+few seconds. The <code>in-toto-run</code> command will timeout after 10 seconds if we do not increase the timeout setting. Change
+the timeout to 180 seconds and build the software:</p>
+<pre class="hljs"><code><div>~/in-toto$ in-toto-run --signing-key app-build.pem \
+--step-name build-1 \
+--run-timeout 180 \
+--materials ./hello-world \
+--products ./hello-world/release/linux/amd64/ \
+--record-streams \
+-- sudo docker container run -v ~/in-toto/hello-world:/app docker.io/golang:1.23 sh -c \
+'cd /app; go mod init rx-m.com/hw; go mod tidy; CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -buildvcs=false -v -a -o release/linux/amd64/hello-world'
+
+Unable to find image 'golang:1.23' locally
+                                          1.23: Pulling from library/golang
+
+...
+
+~/in-toto$
+</div></code></pre>
+<p>The &quot;<code>docker container run</code>&quot; command here runs a go language container with our trash-levels directory mounted inside
+and then executes the &quot;<code>go build</code>&quot; command. This gives us a repeatable Go environment to use. In this example we create
+a new go module for our program though normally the go module would be checked into source control and used to lock down
+version dependencies.</p>
+<p>Examine the link file:</p>
+<pre class="hljs"><code><div>~/in-toto$ ls -l
+
+total 24
+-rw-rw-r-- 1 ubuntu ubuntu  451 Oct 17 21:52 app-build-pub.pem
+-rw------- 1 ubuntu ubuntu 1704 Oct 17 21:52 app-build.pem
+-rw-rw-r-- 1 ubuntu ubuntu 4249 Oct 17 22:26 build-1.3ac5bb80.link
+drwxrwxr-x 4 ubuntu ubuntu 4096 Oct 17 22:26 hello-world
+-rw-rw-r-- 1 ubuntu ubuntu  906 Oct 17 21:59 vcs-1.3ac5bb80.link
+
+~/in-toto$ cat build-1*.link
+</div></code></pre>
+<pre class="hljs"><code><div>{
+ <span class="hljs-attr">"signatures"</span>: [
+  {
+   <span class="hljs-attr">"keyid"</span>: <span class="hljs-string">"3ac5bb8023b595dd03495af020a0fc61ee056897d97166900d7d5233883ed5ea"</span>,
+   <span class="hljs-attr">"sig"</span>: <span class="hljs-string">"051fd01f8899744b2ba6749a49f00952a4f0dc5fcb53e086d6e71b1f309e64c70e49ce0a72b6bffe6bbf06464c9f729ac5e705c47f7e86a8864a75d97016895ab415687416942103725cb619a92409d98638a1ed5dde360bd7b22563f9bd1cbaf7e4db3404277e1d0757eba11eed8e89335d6b5022500c79d41e25e6249c72704ce5b51d2469fd785da41b03f240404b31131704e7a10329dc77ca534bf941ff6ba2a6a4c11a68d7888c698e64cd356fced2ffe3cd85a1a82f90e3439607328374f3cdaff7f9dc75d0eceb1e87e9f4779721786576462f2ebef1ed23d6a7a3d1733c088ff57ee42196f77df997c837fa8041337f4fe8e6ad4b38bfa71bc2eeea"</span>
+  }
+ ],
+ <span class="hljs-attr">"signed"</span>: {
+  <span class="hljs-attr">"_type"</span>: <span class="hljs-string">"link"</span>,
+  <span class="hljs-attr">"byproducts"</span>: {
+   <span class="hljs-attr">"return-value"</span>: <span class="hljs-number">0</span>,
+   <span class="hljs-attr">"stderr"</span>: <span class="hljs-string">"go: creating new go.mod: module rx-m.com/hw\ngo: to add module requirements and sums:\n\tgo mod tidy\ninternal/unsafeheader\ninternal/goarch\ninternal/cpu\ninternal/abi\ninternal/bytealg\ninternal/byteorder\ninternal/chacha8rand\ninternal/coverage/rtcov\ninternal/godebugs\ninternal/goexperiment\ninternal/goos\ninternal/profilerecord\ninternal/runtime/atomic\ninternal/runtime/syscall\ninternal/stringslite\ninternal/runtime/exithook\nruntime/internal/math\nruntime/internal/sys\ncmp\ninternal/itoa\nruntime\ninternal/race\nmath/bits\nmath\nunicode/utf8\nsync/atomic\nunicode\ninternal/asan\ninternal/msan\ncontainer/list\ncrypto/internal/alias\ncrypto/subtle\ncrypto/internal/boring/sig\nunicode/utf16\nvendor/golang.org/x/crypto/cryptobyte/asn1\nvendor/golang.org/x/crypto/internal/alias\ninternal/nettrace\nlog/internal\niter\ninternal/reflectlite\nsync\nslices\ninternal/bisect\nerrors\nstrconv\nio\ninternal/oserror\npath\nreflect\ninternal/godebug\nsyscall\ntime\ninternal/fmtsort\nio/fs\ninternal/syscall/unix\ninternal/filepathlite\ninternal/poll\ninternal/syscall/execenv\ninternal/testlog\nbytes\nos\nstrings\nbufio\nsort\nfmt\nencoding/binary\nhash\nhash/crc32\ncontext\ncrypto\ncrypto/cipher\ncompress/flate\ncrypto/internal/boring\ncrypto/internal/randutil\nmath/rand\ncompress/gzip\nmath/big\ncrypto/aes\ncrypto/des\ncrypto/internal/edwards25519/field\ncrypto/internal/nistec/fiat\ncrypto/rand\nembed\ncrypto/internal/bigmod\ncrypto/internal/nistec\ncrypto/internal/boring/bbig\ncrypto/sha512\nencoding/asn1\ncrypto/ecdh\ncrypto/elliptic\nvendor/golang.org/x/crypto/cryptobyte\ncrypto/internal/edwards25519\ncrypto/ecdsa\ncrypto/ed25519\ncrypto/hmac\nvendor/golang.org/x/crypto/chacha20\nvendor/golang.org/x/crypto/internal/poly1305\nvendor/golang.org/x/sys/cpu\nvendor/golang.org/x/crypto/hkdf\ncrypto/md5\nvendor/golang.org/x/crypto/chacha20poly1305\nvendor/golang.org/x/crypto/sha3\ncrypto/internal/hpke\ncrypto/internal/mlkem768\ncrypto/rc4\ncrypto/rsa\ncrypto/sha1\ncrypto/sha256\ncrypto/dsa\nencoding/hex\nencoding/base64\ncrypto/x509/pkix\nvendor/golang.org/x/net/dns/dnsmessage\nencoding/pem\ninternal/singleflight\nmath/rand/v2\ninternal/concurrent\ninternal/weak\nunique\nnet/url\nnet/netip\npath/filepath\nvendor/golang.org/x/text/transform\nlog\nnet\nvendor/golang.org/x/text/unicode/bidi\nvendor/golang.org/x/text/secure/bidirule\nvendor/golang.org/x/text/unicode/norm\nvendor/golang.org/x/net/idna\nvendor/golang.org/x/net/http2/hpack\nmaps\nmime\nmime/quotedprintable\ncrypto/x509\nnet/textproto\nvendor/golang.org/x/net/http/httpguts\nvendor/golang.org/x/net/http/httpproxy\nmime/multipart\nnet/http/internal\nnet/http/internal/ascii\ncrypto/tls\nnet/http/httptrace\nnet/http\nrx-m.com/hw\n"</span>,
+   <span class="hljs-attr">"stdout"</span>: <span class="hljs-string">""</span>
+  },
+  <span class="hljs-attr">"command"</span>: [
+   <span class="hljs-string">"sudo"</span>,
+   <span class="hljs-string">"docker"</span>,
+   <span class="hljs-string">"container"</span>,
+   <span class="hljs-string">"run"</span>,
+   <span class="hljs-string">"-v"</span>,
+   <span class="hljs-string">"/home/ubuntu/in-toto/hello-world:/app"</span>,
+   <span class="hljs-string">"docker.io/golang:1.23"</span>,
+   <span class="hljs-string">"sh"</span>,
+   <span class="hljs-string">"-c"</span>,
+   <span class="hljs-string">"cd /app; go mod init rx-m.com/hw; go mod tidy; CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -buildvcs=false -v -a -o release/linux/amd64/hello-world"</span>
+  ],
+  <span class="hljs-attr">"environment"</span>: {},
+  <span class="hljs-attr">"materials"</span>: {
+   <span class="hljs-attr">"hello-world/README.md"</span>: {
+    <span class="hljs-attr">"sha256"</span>: <span class="hljs-string">"5ebf6fc735f0d9032701213d37d82b3d41c8854f1bf2df13501f56e55329181e"</span>
+   },
+   <span class="hljs-attr">"hello-world/main.go"</span>: {
+    <span class="hljs-attr">"sha256"</span>: <span class="hljs-string">"51895820b41d75c6b8e8cc447aef6ce908f6abb446259f4beea8875dde97a767"</span>
+   }
+  },
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"build-1"</span>,
+  <span class="hljs-attr">"products"</span>: {
+   <span class="hljs-attr">"hello-world/release/linux/amd64/hello-world"</span>: {
+    <span class="hljs-attr">"sha256"</span>: <span class="hljs-string">"45c1579d48c3290f2b9775b65838825ccde0577a5d2231fc0433d688d005187b"</span>
+   }
+  }
+ }
+}
+</div></code></pre>
+<pre class="hljs"><code><div>~/in-toto$
+</div></code></pre>
+<p>As you can see we now have not only the build command but the output of the build stage captured. We also have the SHA
+hashes of all of the input files and the hash of the executable produced. This entire link file is signed with our
+private key and verifiable with the public key.</p>
+<p>We can add as many links as we see fit to our supply chain. However with our two above links created we can try creating
+a chain, known as a layout to in-toto, whereupon we can verify and sign the entire supply chain process.</p>
+<h3 id="4-chaining-the-links">4. Chaining the links</h3>
+<p>Now that we have a few link files created we can sign the overall supply chain. When using in-toto, a JSON-formatted
+layout file is used to define the stages of your supply chain. In this step we will create a layout that requires just
+the vcs step to be completed and signed.</p>
+<p>When creating the <code>root.layout</code> exemplified below, <em>be sure to change the key information on the following lines to
+match that generated for the key <code>keyid</code> in your vcs-1 step, do NOT use the key information from the example</em>:</p>
+<ul>
+<li><code>signed.steps.pubkeys</code></li>
+<li><code>signed.keys</code></li>
+<li><code>signed.keys.keyid</code></li>
+</ul>
+<p>Get the value for <code>keyid</code> from your vcs-1 step using <code>jq</code> (install <code>jq</code> first if not installed already):</p>
+<pre class="hljs"><code><div>~/in-toto$ sudo apt update &amp;&amp; sudo apt install jq -y
+
+...
+
+~/in-toto$ cat vcs-1*.link | jq '.signatures[].keyid'
+
+&quot;3ac5bb8023b595dd03495af020a0fc61ee056897d97166900d7d5233883ed5ea&quot;
+
+~/in-toto$
+</div></code></pre>
+<p>We will need to provide the public key information from <code>app-build-pub.pem</code> at <code>signed.keys.keyval.public</code> in the
+in-toto layout but <em>it needs to be a single line with no spaces and with <code>\n</code> characters in place of the newlines</em> in
+the file. Here is an example you can run to get the key material in the right format:</p>
+<pre class="hljs"><code><div># The format in the file:
+~/in-toto$ cat app-build-pub.pem
+
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzVv3w9AIei8YybKBjlna
+uyjHSBsdmBrvsaOrE8FC9Ub6d4x6S/5S8PwgJsNtIyvIXfS7jT2D3A4I7XLyo06k
+OGzGNvYSBHDqdBqhx+xpjOsmPsBprBCgRYHV4ZRxjGVtZ+vR+u3KJUBDEUxLdhNS
+ri/8Vt3T093Z3SFKM0FhydE7lRXFQcH8QONDAg0PsmJgDclH3uC73KuJEmBrHZtI
+XhaAsKnQmSfLaATU6cJQ4lYOZ6rvk9k4knReAWqJEJgyAvEaF+huKBZEMSTjgprI
+UkFXvqJkI5hHbn9Q1uRh1PyvgGee0HXW/q0rjokbw0g0stPJaEkIA8YQwC9P8U5C
+fwIDAQAB
+-----END PUBLIC KEY-----
+
+# The format you need in the layout:
+~/in-toto$ cat app-build-pub.pem | sed 's/$/\\n/' | tr -d '\n' | sed 's/\\n$//'; echo
+
+-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzVv3w9AIei8YybKBjlna\nuyjHSBsdmBrvsaOrE8FC9Ub6d4x6S/5S8PwgJsNtIyvIXfS7jT2D3A4I7XLyo06k\nOGzGNvYSBHDqdBqhx+xpjOsmPsBprBCgRYHV4ZRxjGVtZ+vR+u3KJUBDEUxLdhNS\nri/8Vt3T093Z3SFKM0FhydE7lRXFQcH8QONDAg0PsmJgDclH3uC73KuJEmBrHZtI\nXhaAsKnQmSfLaATU6cJQ4lYOZ6rvk9k4knReAWqJEJgyAvEaF+huKBZEMSTjgprI\nUkFXvqJkI5hHbn9Q1uRh1PyvgGee0HXW/q0rjokbw0g0stPJaEkIA8YQwC9P8U5C\nfwIDAQAB\n-----END PUBLIC KEY-----
+
+~/in-toto$
+</div></code></pre>
+<p>Create the following layout file making sure to:</p>
+<ul>
+<li>Put the value returned by the <code>cat vcs-1*.link | jq '.signatures[].keyid'</code> command in for the example values of:
+<ul>
+<li><code>signed.steps[0].pubkeys</code></li>
+<li><code>signed.keys</code></li>
+<li><code>signed.keys.&lt;ID&gt;.keyid</code></li>
+</ul>
+</li>
+<li>Put the properly formatted public key material in <code>signed.keys.&lt;ID&gt;.keyval.public</code></li>
+</ul>
+<pre class="hljs"><code><div>~/in-toto$ nano root.layout &amp;&amp; cat root.layout
+</div></code></pre>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"signatures"</span>: [],
+  <span class="hljs-attr">"signed"</span>: {
+    <span class="hljs-attr">"_type"</span>: <span class="hljs-string">"layout"</span>,
+    <span class="hljs-attr">"expires"</span>: <span class="hljs-string">"2030-01-01T01:01:00Z"</span>,
+    <span class="hljs-attr">"readme"</span>: <span class="hljs-string">"Hello world supply chain"</span>,
+    <span class="hljs-attr">"steps"</span>: [{
+      <span class="hljs-attr">"_type"</span>: <span class="hljs-string">"step"</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"vcs-1"</span>,
+      <span class="hljs-attr">"expected_materials"</span>: [],
+      <span class="hljs-attr">"expected_products"</span>: [],
+      <span class="hljs-attr">"pubkeys"</span>: [<span class="hljs-string">"3ac5bb8023b595dd03495af020a0fc61ee056897d97166900d7d5233883ed5ea"</span>],
+      <span class="hljs-attr">"expected_command"</span>: [<span class="hljs-string">"git"</span>,<span class="hljs-string">"clone"</span>,<span class="hljs-string">"git://172.17.0.2/hello-world.git"</span>],
+      <span class="hljs-attr">"threshold"</span>: <span class="hljs-number">1</span>
+    }],
+    <span class="hljs-attr">"inspect"</span>: [],
+    <span class="hljs-attr">"keys"</span>: {
+      <span class="hljs-attr">"3ac5bb8023b595dd03495af020a0fc61ee056897d97166900d7d5233883ed5ea"</span>: {
+        <span class="hljs-attr">"keyid"</span>: <span class="hljs-string">"3ac5bb8023b595dd03495af020a0fc61ee056897d97166900d7d5233883ed5ea"</span>,
+        <span class="hljs-attr">"keytype"</span>: <span class="hljs-string">"rsa"</span>,
+        <span class="hljs-attr">"keyval"</span>: {
+          <span class="hljs-attr">"public"</span>: <span class="hljs-string">"-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzVv3w9AIei8YybKBjlna\nuyjHSBsdmBrvsaOrE8FC9Ub6d4x6S/5S8PwgJsNtIyvIXfS7jT2D3A4I7XLyo06k\nOGzGNvYSBHDqdBqhx+xpjOsmPsBprBCgRYHV4ZRxjGVtZ+vR+u3KJUBDEUxLdhNS\nri/8Vt3T093Z3SFKM0FhydE7lRXFQcH8QONDAg0PsmJgDclH3uC73KuJEmBrHZtI\nXhaAsKnQmSfLaATU6cJQ4lYOZ6rvk9k4knReAWqJEJgyAvEaF+huKBZEMSTjgprI\nUkFXvqJkI5hHbn9Q1uRh1PyvgGee0HXW/q0rjokbw0g0stPJaEkIA8YQwC9P8U5C\nfwIDAQAB\n-----END PUBLIC KEY-----"</span>
+        },
+        <span class="hljs-attr">"scheme"</span>: <span class="hljs-string">"rsassa-pss-sha256"</span>
+      }
+    }
+  }
+}
+</div></code></pre>
+<pre class="hljs"><code><div>~/in-toto$
+</div></code></pre>
+<p>This layout file contains two top level keys:</p>
+<ul>
+<li>signatures: this is where the signatures will go when we sign the file with the layout private key</li>
+<li>signed: this is the layout body we want signed</li>
+</ul>
+<p>The <code>signed</code> section includes the following fields for signing:</p>
+<ul>
+<li><code>_type</code>: always &quot;layout&quot;</li>
+<li><code>expires</code>: freshness requires that we only commit to these attestations for a defined period</li>
+<li><code>readme</code>: arbitrary descriptive information</li>
+<li><code>steps</code>: a list of the steps to verify</li>
+<li><code>inspect</code>: a list of optional inspections to make (e.g. verifying binary executable SHA hashes)</li>
+<li><code>keys</code>: this is the list of functionary keys we allow (keyid and public key components are needed)</li>
+</ul>
+<p>Each step includes the following keys:</p>
+<ul>
+<li><code>_type</code>: always &quot;step&quot;</li>
+<li><code>name</code>: the step name</li>
+<li><code>expected_materials</code>: expected input files</li>
+<li><code>expected_products</code>: expected output files</li>
+<li><code>pubkeys</code>: public keys to use when verifying functionary signatures</li>
+<li><code>expected_command</code>: commands expected to be run</li>
+<li><code>threshold</code>: the number of functionary signatures required</li>
+</ul>
+<p>In this first cut we supply only the vcs step. We can add more steps and inspections later. While we could verify
+expected products, materials and more in each step, we'll start by simply verifying the fact that the git clone command
+we want was run.</p>
+<p>To sign this layout we need to use a <em>different key from the keys used for the various link steps</em>. This is a
+manifestation of the two person rule. Several parties can be required to run and sign each step, while another party
+verifies the entire process. This way if any one functionary key is compromised, we can still ensure a secure supply
+chain.</p>
+<p>Create a new key set to use when signing the layout file:</p>
+<pre class="hljs"><code><div>~/in-toto$ openssl genpkey -algorithm rsa -out chain-root.pem                 # Generate private key
+
+~/in-toto$ openssl rsa -in chain-root.pem -pubout -out chain-root-pub.pem     # Generate public key
+
+~/in-toto$ ls -l
+
+total 36
+-rw-rw-r-- 1 ubuntu ubuntu  451 Oct 17 21:52 app-build-pub.pem
+-rw------- 1 ubuntu ubuntu 1704 Oct 17 21:52 app-build.pem
+-rw-rw-r-- 1 ubuntu ubuntu 4249 Oct 17 22:26 build-1.3ac5bb80.link
+-rw-rw-r-- 1 ubuntu ubuntu  451 Oct 17 22:48 chain-root-pub.pem
+-rw------- 1 ubuntu ubuntu 1704 Oct 17 22:48 chain-root.pem
+drwxrwxr-x 4 ubuntu ubuntu 4096 Oct 17 22:26 hello-world
+-rw-rw-r-- 1 ubuntu ubuntu 1249 Oct 17 22:46 root.layout
+-rw-rw-r-- 1 ubuntu ubuntu  906 Oct 17 21:59 vcs-1.3ac5bb80.link
+
+~/in-toto$
+</div></code></pre>
+<p>Sign the layout using <code>in-toto-sign</code>:</p>
+<pre class="hljs"><code><div>~/in-toto$ in-toto-sign -f root.layout --key chain-root.pem -o root.layout.sig
+
+~/in-toto$
+</div></code></pre>
+<p>Examine the signed layout:</p>
+<pre class="hljs"><code><div>~/in-toto$ cat root.layout.sig
+</div></code></pre>
+<pre class="hljs"><code><div>{
+ <span class="hljs-attr">"signatures"</span>: [
+  {
+   <span class="hljs-attr">"keyid"</span>: <span class="hljs-string">"b0a632ab159bb27aa981be5e28f55664a144ecb15ef71d73a26370faead97eb5"</span>,
+   <span class="hljs-attr">"sig"</span>: <span class="hljs-string">"ab4f571b01f7a349e18ac9dd32b769a8b9d67a83f2507f0f643f6dfc3392600d15fab2851a07a9c119b181ff725a0776472ff0ac6a0564be94e9e54549cf5452384495b41f3a7689cc83693db506b66ca2e54d632bc970f6e8d5a3ae2351bb8c0e2ceb1ca8104a569b86d32f68ed5a25a78d7041dfe974b5a2237ca54806c8fcb8696b042be94edaad4d48c9a8e699d0268e37bd28449b9d4a2c94fde876da06afcbe2d085c8681d7989ad685b907e4d483754a308983816c809309eb66864ada6e99508cff4731e365bf085c25bfb4a3c5ce6c657b42df625d460428d29e13ef1cde6a6eb5babcdcb426c484534372cf357b7c005a5d066b0c24278a6ca646c"</span>
+  }
+ ],
+ <span class="hljs-attr">"signed"</span>: {
+  <span class="hljs-attr">"_type"</span>: <span class="hljs-string">"layout"</span>,
+  <span class="hljs-attr">"expires"</span>: <span class="hljs-string">"2030-01-01T01:01:00Z"</span>,
+  <span class="hljs-attr">"inspect"</span>: [],
+  <span class="hljs-attr">"keys"</span>: {
+   <span class="hljs-attr">"3ac5bb8023b595dd03495af020a0fc61ee056897d97166900d7d5233883ed5ea"</span>: {
+    <span class="hljs-attr">"keyid"</span>: <span class="hljs-string">"3ac5bb8023b595dd03495af020a0fc61ee056897d97166900d7d5233883ed5ea"</span>,
+    <span class="hljs-attr">"keytype"</span>: <span class="hljs-string">"rsa"</span>,
+    <span class="hljs-attr">"keyval"</span>: {
+     <span class="hljs-attr">"public"</span>: <span class="hljs-string">"-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzVv3w9AIei8YybKBjlna\nuyjHSBsdmBrvsaOrE8FC9Ub6d4x6S/5S8PwgJsNtIyvIXfS7jT2D3A4I7XLyo06k\nOGzGNvYSBHDqdBqhx+xpjOsmPsBprBCgRYHV4ZRxjGVtZ+vR+u3KJUBDEUxLdhNS\nri/8Vt3T093Z3SFKM0FhydE7lRXFQcH8QONDAg0PsmJgDclH3uC73KuJEmBrHZtI\nXhaAsKnQmSfLaATU6cJQ4lYOZ6rvk9k4knReAWqJEJgyAvEaF+huKBZEMSTjgprI\nUkFXvqJkI5hHbn9Q1uRh1PyvgGee0HXW/q0rjokbw0g0stPJaEkIA8YQwC9P8U5C\nfwIDAQAB\n-----END PUBLIC KEY-----"</span>
+    },
+    <span class="hljs-attr">"scheme"</span>: <span class="hljs-string">"rsassa-pss-sha256"</span>
+   }
+  },
+  <span class="hljs-attr">"readme"</span>: <span class="hljs-string">"Hello world supply chain"</span>,
+  <span class="hljs-attr">"steps"</span>: [
+   {
+    <span class="hljs-attr">"_type"</span>: <span class="hljs-string">"step"</span>,
+    <span class="hljs-attr">"expected_command"</span>: [
+     <span class="hljs-string">"git"</span>,
+     <span class="hljs-string">"clone"</span>,
+     <span class="hljs-string">"git://172.17.0.2/hello-world.git"</span>
+    ],
+    <span class="hljs-attr">"expected_materials"</span>: [],
+    <span class="hljs-attr">"expected_products"</span>: [],
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"vcs-1"</span>,
+    <span class="hljs-attr">"pubkeys"</span>: [
+     <span class="hljs-string">"3ac5bb8023b595dd03495af020a0fc61ee056897d97166900d7d5233883ed5ea"</span>
+    ],
+    <span class="hljs-attr">"threshold"</span>: <span class="hljs-number">1</span>
+   }
+  ]
+ }
+}
+</div></code></pre>
+<pre class="hljs"><code><div>~/in-toto$
+</div></code></pre>
+<p>The metadata is the same but it now includes a signature block attesting that this is indeed our supply chain, defining
+the steps, commands executed and more.</p>
+<h3 id="5-verifying-the-chain">5. Verifying the chain</h3>
+<p>Now that we have a layout that defines our steps and order (one step so far), we can verify the supply chain.
+Imagine our client (or a k8s admission controller) wants to know for sure that our supply chain can be trusted before
+deploying our software. To make this possible we could distribute a tarball with the signed links and layout metadata,
+whereupon the client could then use the root public key to verify the layout integrity and its requirements for
+each of the links, including the SHA of the built container image(s), distributable tarball or what have you.</p>
+<p>For example, if our supply chain admission controller is asked to verify a Pod using image <code>rxmllc/trash-levels:1.1.1</code>
+we could verify that the <code>s3:/supply-chain-meta/rxmllc/trash-levels:1.1.1/root.layout</code> is valid (using the root public
+key) and that the container image gpg key matches the layout expected_products gpg file for the image build step.</p>
+<p>To see how this works, verify your signed layout with <code>in-toto-verify</code>:</p>
+<pre class="hljs"><code><div>~/in-toto$ in-toto-verify --layout root.layout.sig --verification-keys chain-root-pub.pem -v
+
+Loading layout...
+Verifying layout metadata signatures...
+Extracting layout from metadata...
+Verifying layout expiration...
+Reading link metadata files...
+Verifying link metadata signatures...
+Verifying sublayouts...
+Verifying alignment of reported commands...
+Verifying command alignment for 'vcs-1.3ac5bb80.link'...
+Verifying threshold constraints...
+Skipping threshold verification for step 'vcs-1' with threshold '1'...
+Verifying Step rules...
+Verifying material rules for 'vcs-1'...
+Verifying product rules for 'vcs-1'...
+Executing Inspection commands...
+Verifying Inspection rules...
+The software product passed all verification.
+
+~/in-toto$
+</div></code></pre>
+<p>The supply chain is intact! We can attest that:</p>
+<ul>
+<li>All of the steps were completed</li>
+<li>The commands we want to see run were executed</li>
+<li>The functionaries we authorize attest to each of the steps required</li>
+</ul>
+<h3 id="6-attack-the-supply-chain">6. Attack the supply chain</h3>
+<p>Supply chains can fall prey to a wide range of attacks. Should an adversary compromise any aspect of the supply chain
+we will have grave concerns:</p>
+<ul>
+<li>Developer desktop: adversary can commit dangerous code as the developer</li>
+<li>Source code control system: adversary can inject dangerous code or tag unauthorized branches</li>
+<li>Build system: adversary can inject compromised libraries or sign bad builds</li>
+<li>Test environment: adversary can pass infected or crippled code</li>
+<li>Packaging: adversary can package (containerize) and sign anything</li>
+</ul>
+<p>Let's see how in-toto can help us here.</p>
+<p>First let's try something simple. Our protected step requires us to clone the hello-world repo, let's try cloning a
+different repository:</p>
+<pre class="hljs"><code><div>~/in-toto$ in-toto-run --step-name vcs-1 --signing-key app-build.pem -- git clone https://github.com/rx-m/hostinfo
+
+~/in-toto$ ls -l
+
+total 44
+-rw-rw-r-- 1 ubuntu ubuntu  451 Oct 17 21:52 app-build-pub.pem
+-rw------- 1 ubuntu ubuntu 1704 Oct 17 21:52 app-build.pem
+-rw-rw-r-- 1 ubuntu ubuntu 4249 Oct 17 22:26 build-1.3ac5bb80.link
+-rw-rw-r-- 1 ubuntu ubuntu  451 Oct 17 22:48 chain-root-pub.pem
+-rw------- 1 ubuntu ubuntu 1704 Oct 17 22:48 chain-root.pem
+drwxrwxr-x 4 ubuntu ubuntu 4096 Oct 17 22:26 hello-world
+drwxrwxr-x 5 ubuntu ubuntu 4096 Oct 18 02:13 hostinfo
+-rw-rw-r-- 1 ubuntu ubuntu 1249 Oct 17 22:50 root.layout
+-rw-rw-r-- 1 ubuntu ubuntu 1841 Oct 17 22:50 root.layout.sig
+-rw-rw-r-- 1 ubuntu ubuntu  906 Oct 18 02:13 vcs-1.3ac5bb80.link
+
+~/in-toto$
+</div></code></pre>
+<p>As a bad actor, we have used the stolen <code>app-build.pem</code> key to sign the vcs-1 link with our dangerous repo cloned
+(hostinfo). Let's see what in-toto thinks about our supply chain now:</p>
+<pre class="hljs"><code><div>~/in-toto$ in-toto-verify --layout root.layout.sig --verification-keys chain-root-pub.pem -v
+
+...
+
+Run command '['git', 'clone', 'https://github.com/rx-m/hostinfo']' differs from expected command '['git', 'clone', 'git://172.17.0.2/hello-world.git']'
+
+...
+
+~/in-toto$
+</div></code></pre>
+<p>Our supply chain layout says hello-world must be cloned. In-toto thus complains when is sees the vcs link file signing
+the git clone of the hostinfo repo.</p>
+<p>Let's try another approach. Edit the vcs link file to show that hello-world <em>was cloned</em> by editing line 18:</p>
+<pre class="hljs"><code><div>~/in-toto$ nano vcs-1.*.link &amp;&amp; cat vcs-1.*.link
+</div></code></pre>
+<pre class="hljs"><code><div>{
+ <span class="hljs-attr">"signatures"</span>: [
+  {
+   <span class="hljs-attr">"keyid"</span>: <span class="hljs-string">"3ac5bb8023b595dd03495af020a0fc61ee056897d97166900d7d5233883ed5ea"</span>,
+   <span class="hljs-attr">"sig"</span>: <span class="hljs-string">"64ae80d8141409d6322d73e22f59dc30f9708f55f0d72542d328fffada055adbcfc885a0d45850e787040b98296fe20178337e4f63dbb82f658d5a000738f4faed40b7db5ea9dbe8661dee08a091c9868cd7b3327c58373fdca64d502dcccc59bc79d7bf804a91bf02149958390120561756ded118f872f962497ae0900e50cdc26d4220a8b82b7e5e156452bca3c2b37c1f205b0603eb28377984eb93d1c5279555b4203ec56d0a898f3b9c3caf0d1470271e81dfbc1cb3fc81b9ef09b034ddf8a49b323a458e96df492c62dbab406376b51d73f1a674757842d88f7c3f0d0411035093fd5e94485d62e8ee10a023550cd891a35a1cffef3d9e839ea1705781"</span>
+  }
+ ],
+ <span class="hljs-attr">"signed"</span>: {
+  <span class="hljs-attr">"_type"</span>: <span class="hljs-string">"link"</span>,
+  <span class="hljs-attr">"byproducts"</span>: {
+   <span class="hljs-attr">"return-value"</span>: <span class="hljs-number">0</span>,
+   <span class="hljs-attr">"stderr"</span>: <span class="hljs-string">""</span>,
+   <span class="hljs-attr">"stdout"</span>: <span class="hljs-string">""</span>
+  },
+  <span class="hljs-attr">"command"</span>: [
+   <span class="hljs-string">"git"</span>,
+   <span class="hljs-string">"clone"</span>,
+   <span class="hljs-string">"git://172.17.0.2/hello-world.git"</span>
+  ],
+  <span class="hljs-attr">"environment"</span>: {},
+  <span class="hljs-attr">"materials"</span>: {},
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"vcs-1"</span>,
+  <span class="hljs-attr">"products"</span>: {}
+ }
+}
+</div></code></pre>
+<pre class="hljs"><code><div>~/in-toto$
+</div></code></pre>
+<p>Now try to verify the supply chain:</p>
+<pre class="hljs"><code><div>~/in-toto$ in-toto-verify --layout root.layout.sig --verification-keys chain-root-pub.pem -v
+
+(in-toto-verify) ThresholdVerificationError: Step 'vcs-1' requires at least '1' links validly signed by different authorized functionaries. Only found '0'
+
+~/in-toto$
+</div></code></pre>
+<p>Because the link attestation is signed any tampering with the file contents will cause in-toto to reject the link. You
+may have noticed the <code>&quot;threshold&quot;: 1</code> setting in the layout file, this defines the number of link signatures a step
+requires to pass. This gives us the ability to require multiple functionaries to sign off on a link before accepting it.</p>
+<p>In-toto can do much more of course. You can verify that the outputs of one step (the products) are used as the inputs of
+the next step (the materials). This helps secure the integrity of the chain from step to step.</p>
+<p>Tools like The Update Framework [TUF] (https://theupdateframework.io/) can be used to distribute artifacts and signed
+metatdata. Tools like Grafeas (https://grafeas.io/) can be used to securely host link and layout metadata
+(https://github.com/in-toto/totoify-grafeas).</p>
+<br>
+<p>Congratulations you have completed the labs!</p>
+<br>
+<p><em>Copyright (c) 2024 RX-M LLC, Cloud Native &amp; AI Consulting, all rights reserved</em></p>
+
+</body>
+</html>
